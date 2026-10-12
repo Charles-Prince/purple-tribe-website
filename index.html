@@ -1,0 +1,721 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purple Tribe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple-950:#1B0A2E;
+    --purple-900:#26103F;
+    --purple-800:#3B1053;
+    --purple-600:#6B2FA0;
+    --purple-500:#8A4FC2;
+    --purple-200:#DFC9F5;
+    --purple-100:#F1E7FA;
+    --gold:#F2B705;
+    --gold-soft:#FBE3A3;
+    --ink:#1B1425;
+    --cream:#FAF7FF;
+    --gray:#786C8C;
+    --line: rgba(255,255,255,0.14);
+
+    --font-display:'Fraunces', serif;
+    --font-body:'Plus Jakarta Sans', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+
+    --fs-hero: clamp(2.6rem, 5.4vw + 1rem, 5.2rem);
+    --fs-h2: clamp(2rem, 2.6vw + 1rem, 3.2rem);
+    --fs-h3: clamp(1.3rem, 1vw + 1rem, 1.7rem);
+
+    --maxw: 1180px;
+    --radius: 20px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    font-family:var(--font-body); color:var(--ink); background:var(--cream);
+    line-height:1.5; -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  button{font:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 clamp(1.25rem, 4vw, 3rem);}
+  .eyebrow{font-family:var(--font-mono); font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; font-weight:500;}
+  h1,h2,h3{font-family:var(--font-display); line-height:1.05; letter-spacing:-0.01em;}
+  h2{font-size:var(--fs-h2); font-weight:700;}
+  h3{font-size:var(--fs-h3); font-weight:600;}
+  p{color:var(--gray);}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:0.5rem; font-family:var(--font-body); font-weight:700; font-size:0.95rem;
+    padding:0.9rem 1.6rem; border-radius:999px; border:1.5px solid transparent; cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease; white-space:nowrap;
+  }
+  .btn:focus-visible{outline:3px solid var(--gold); outline-offset:3px;}
+  .btn-gold{background:var(--gold); color:var(--purple-950);}
+  .btn-gold:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(242,183,5,0.35);}
+  .btn-ghost{background:transparent; color:var(--cream); border-color:rgba(255,255,255,0.35);}
+  .btn-ghost:hover{border-color:var(--gold); color:var(--gold); transform:translateY(-2px);}
+
+  /* ---------- NAV / TABS ---------- */
+  header.nav{ position:sticky; top:0; z-index:100; background:transparent; border-bottom:1px solid var(--line); }
+  header.nav::before{ content:''; position:absolute; inset:0; background:rgba(27,10,46,0.86); backdrop-filter:blur(10px); z-index:-1; }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding:1rem clamp(1.25rem, 4vw, 3rem); max-width:var(--maxw); margin:0 auto; gap:1rem; }
+  .logo{ font-family:var(--font-display); font-weight:800; font-size:1.3rem; color:var(--cream); display:flex; align-items:center; gap:0.5rem; flex-shrink:0; cursor:pointer; }
+  .logo span{color:var(--gold);}
+
+  .tabs{ display:flex; gap:0.3rem; align-items:center; }
+  .tab-btn{
+    background:none; border:none; color:var(--purple-200); font-size:0.92rem; font-weight:600;
+    padding:0.55rem 0.9rem; border-radius:999px; cursor:pointer; transition:color .15s ease, background .15s ease;
+    white-space:nowrap;
+  }
+  .tab-btn:hover{color:var(--cream); background:rgba(255,255,255,0.06);}
+  .tab-btn.active{color:var(--purple-950); background:var(--gold-soft);}
+
+  .nav-cta{display:flex; align-items:center; gap:0.7rem; flex-shrink:0;}
+  .menu-btn{display:none; background:none; border:none; color:var(--cream); font-size:1.5rem; cursor:pointer;}
+
+  @media (max-width:980px){
+    .tabs{
+      position:fixed; inset:64px 0 0 0; flex-direction:column; align-items:stretch; gap:0.2rem;
+      background:var(--purple-950); padding:1rem clamp(1.25rem,4vw,3rem); transform:translateX(100%);
+      transition:transform .25s ease; overflow-y:auto; z-index:99;
+    }
+    .tabs.open{transform:translateX(0);}
+    .tab-btn{ text-align:left; padding:0.9rem 0.5rem; border-radius:10px; font-size:1.05rem; }
+    .tab-btn.active{background:rgba(242,183,5,0.14); color:var(--gold);}
+    .menu-btn{display:block;}
+    .nav-cta .btn-ghost{display:none;}
+  }
+
+  /* ---------- TAB PANELS ---------- */
+  .panel{display:none;}
+  .panel.active{display:block;}
+
+  .section-pad{padding:5rem 0;}
+  .bg-light{background:var(--cream);}
+  .bg-tint{background:var(--purple-100);}
+  .bg-dark{background:var(--purple-950); color:var(--cream);}
+  .bg-dark .section-head h2{color:var(--cream);}
+  .bg-dark .section-head p{color:var(--purple-200);}
+  .bg-dark .eyebrow{color:var(--gold-soft);}
+  .section-head{max-width:42rem; margin-bottom:2.6rem;}
+  .section-head .eyebrow{color:var(--purple-600); margin-bottom:0.8rem;}
+  .section-head h2{color:var(--ink);}
+  .section-head p{margin-top:1rem; font-size:1.05rem;}
+
+  /* ---------- HERO (Home tab) ---------- */
+  .hero{ background:radial-gradient(120% 90% at 15% 0%, var(--purple-800) 0%, var(--purple-950) 55%); color:var(--cream); padding:4rem 0 3rem; overflow:hidden; }
+  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:3rem; align-items:center;}
+  .hero .eyebrow{color:var(--gold-soft); margin-bottom:1.2rem;}
+  .hero h1{font-size:var(--fs-hero); font-weight:600; margin-bottom:1.4rem;}
+  .hero h1 em{font-style:italic; color:var(--gold);}
+  .hero p.lead{font-size:1.15rem; color:var(--purple-200); max-width:34rem; margin-bottom:2.2rem;}
+  .hero-ctas{display:flex; gap:1rem; flex-wrap:wrap;}
+  @media (max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+
+  .pillars-wrap{ background:rgba(255,255,255,0.04); border:1px solid var(--line); border-radius:24px; padding:2.5rem 1.5rem; }
+  .pillar-flow{display:flex; align-items:center; justify-content:center; gap:0.4rem; flex-wrap:wrap;}
+  .pillar-node{display:flex; flex-direction:column; align-items:center; gap:0.7rem;}
+  .pillar-icon{ width:64px; height:64px; border-radius:50%; background:rgba(242,183,5,0.12); border:1.5px solid rgba(242,183,5,0.4); display:flex; align-items:center; justify-content:center; }
+  .pillar-icon svg{width:26px; height:26px; stroke:var(--gold);}
+  .pillar-label{font-family:var(--font-mono); font-size:0.78rem; color:var(--cream); letter-spacing:0.04em;}
+  .pillar-arrow{flex-shrink:0; margin-bottom:1.9rem;}
+  .pillar-caption{ text-align:center; margin-top:1.8rem; font-size:0.9rem; color:var(--purple-200); max-width:24rem; margin-left:auto; margin-right:auto; }
+  @media (max-width:520px){ .pillar-arrow{transform:rotate(90deg); margin:0.2rem 0;} .pillar-flow{flex-direction:column;} }
+
+  /* ---------- SO FAR (honest recap) ---------- */
+  .sofar{ background:var(--purple-950); padding:3.5rem 0; }
+  .sofar-card{
+    background:linear-gradient(120deg, var(--purple-800), var(--purple-950)); border:1px solid var(--line);
+    border-radius:24px; padding:clamp(1.8rem,4vw,3rem); display:grid; grid-template-columns:auto 1fr; gap:2rem; align-items:center;
+  }
+  .sofar-badge{
+    width:76px; height:76px; border-radius:50%; background:rgba(242,183,5,0.14); border:1.5px solid var(--gold);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .sofar-badge svg{width:32px; height:32px; stroke:var(--gold);}
+  .sofar h3{color:var(--cream); margin-bottom:0.5rem;}
+  .sofar p{color:var(--purple-200); font-size:1rem;}
+  @media (max-width:700px){ .sofar-card{grid-template-columns:1fr; text-align:center;} .sofar-badge{margin:0 auto;} }
+
+  /* ---------- CARD GRIDS (Programs / Values / Team) ---------- */
+  .card-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;}
+  .card{
+    background:#fff; border-radius:var(--radius); padding:2.2rem 1.8rem; border:1px solid rgba(107,47,160,0.12);
+    box-shadow:0 1px 2px rgba(27,10,46,0.03); transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .card:hover{transform:translateY(-6px); box-shadow:0 20px 36px rgba(59,16,83,0.12);}
+  .card-num{font-family:var(--font-mono); color:var(--purple-500); font-size:0.85rem; margin-bottom:1rem;}
+  .card-icon{ width:52px; height:52px; border-radius:14px; background:var(--purple-100); display:flex; align-items:center; justify-content:center; margin-bottom:1.3rem; }
+  .card-icon svg{width:26px; height:26px; stroke:var(--purple-600);}
+  .card h3{margin-bottom:0.7rem; color:var(--ink);}
+  .card p{font-size:0.95rem;}
+  .card .tag{ display:inline-block; margin-top:1.1rem; font-family:var(--font-mono); font-size:0.72rem; color:var(--purple-800); background:var(--purple-100); padding:0.35rem 0.7rem; border-radius:999px; }
+  @media (max-width:900px){.card-grid{grid-template-columns:1fr;}}
+
+  .teaser-link{ display:inline-flex; align-items:center; gap:0.4rem; margin-top:2rem; font-weight:700; color:var(--purple-600); background:none; border:none; cursor:pointer; font-size:0.95rem; }
+  .teaser-link:hover{color:var(--purple-800);}
+
+  /* ---------- WHAT WE DO tab ---------- */
+  .feature-block{
+    background:#fff; border-radius:28px; padding:clamp(1.8rem,4vw,3rem); border:1px solid rgba(107,47,160,0.12);
+    display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:center; margin-bottom:2rem;
+  }
+  .feature-block .eyebrow{color:var(--purple-600); margin-bottom:0.8rem;}
+  .feature-chips{display:flex; flex-wrap:wrap; gap:0.6rem; margin-top:1.4rem;}
+  .chip{ font-family:var(--font-mono); font-size:0.78rem; color:var(--purple-800); background:var(--purple-100); padding:0.45rem 0.85rem; border-radius:999px; }
+  .feature-visual{
+    background:var(--purple-950); border-radius:20px; padding:2rem; display:flex; flex-direction:column; gap:1.1rem;
+  }
+  .feature-visual .agenda-row{display:flex; align-items:baseline; gap:0.9rem;}
+  .feature-visual .agenda-time{font-family:var(--font-mono); font-size:0.75rem; color:var(--gold-soft); min-width:52px;}
+  .feature-visual .agenda-title{color:var(--cream); font-weight:700; font-size:0.92rem;}
+  @media (max-width:850px){ .feature-block{grid-template-columns:1fr;} }
+
+  .support-grid{display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;}
+  .support-card{ background:var(--purple-100); border-radius:20px; padding:1.8rem; }
+  .support-card h3{color:var(--ink); margin-bottom:0.6rem; font-size:1.25rem;}
+  .support-card p{font-size:0.93rem;}
+  @media (max-width:850px){.support-grid{grid-template-columns:1fr;}}
+
+  /* ---------- EMPTY STATE (Events) ---------- */
+  .empty-state{
+    max-width:30rem; margin:2rem auto 0; text-align:center; padding:3.5rem 2rem;
+    border:1.5px dashed rgba(107,47,160,0.28); border-radius:24px; background:var(--purple-100);
+  }
+  .empty-icon{
+    width:64px; height:64px; border-radius:50%; background:#fff; margin:0 auto 1.4rem;
+    display:flex; align-items:center; justify-content:center; border:1px solid rgba(107,47,160,0.2);
+  }
+  .empty-icon svg{width:28px; height:28px; stroke:var(--purple-600);}
+  .empty-state h3{color:var(--ink); margin-bottom:0.7rem;}
+  .empty-state p{font-size:0.95rem; max-width:24rem; margin:0 auto;}
+
+  /* ---------- MINI EVENTS (planned, secondary) ---------- */
+  .mini-events{display:flex; flex-direction:column; gap:0.9rem;}
+  .mini-event{ display:flex; align-items:center; gap:1.5rem; background:#fff; border:1px solid rgba(107,47,160,0.12); border-radius:14px; padding:1.1rem 1.4rem; }
+  .mini-when{ font-family:var(--font-mono); font-size:0.78rem; color:var(--purple-800); background:var(--purple-100); padding:0.5rem 0.8rem; border-radius:8px; white-space:nowrap; flex-shrink:0; text-align:center; min-width:108px; }
+  .mini-body{flex:1;}
+  .mini-body h4{font-size:0.98rem; color:var(--ink); font-weight:700;}
+  .mini-body p{font-size:0.85rem; margin-top:0.2rem;}
+  .mini-event .link-cta{flex-shrink:0; margin:0; font-size:0.88rem; font-weight:700; color:var(--purple-600); background:none; border:none; cursor:pointer;}
+  @media (max-width:700px){ .mini-event{flex-wrap:wrap;} .mini-event .link-cta{margin-left:auto;} }
+
+  /* ---------- ABOUT tab ---------- */
+  .mv-block{max-width:46rem; margin:0 auto 2.5rem; text-align:center;}
+  .mv-label{color:var(--purple-600); margin-bottom:0.6rem;}
+  .mv-statement{ font-family:var(--font-display); font-size:clamp(1.3rem,1.6vw + 1rem,1.7rem); font-weight:500; color:var(--ink); line-height:1.4; font-style:italic; }
+  .value-card{ text-align:center; }
+  .value-card .card-icon{margin:0 auto 1.3rem;}
+  .value-ref{ display:block; margin-top:0.9rem; font-family:var(--font-mono); font-size:0.75rem; color:var(--purple-500); }
+
+  /* ---------- GET INVOLVED tab ---------- */
+  .involve-grid{display:grid; grid-template-columns:1fr 1fr; gap:3.5rem; align-items:start;}
+  .path-list{display:flex; flex-direction:column; gap:1.6rem;}
+  .path-card{ padding:1.4rem 1.6rem; border-radius:16px; border:1px solid rgba(107,47,160,0.15); background:#fff; cursor:pointer; transition:border-color .15s ease, background .15s ease; }
+  .path-card.active, .path-card:hover{border-color:var(--purple-600); background:var(--purple-100);}
+  .path-card h4{font-size:1.05rem; color:var(--ink); margin-bottom:0.3rem;}
+  .path-card p{font-size:0.9rem; margin:0;}
+
+  form.involve-form{ background:var(--purple-950); border-radius:var(--radius); padding:2.2rem; }
+  form.involve-form label{ display:block; font-family:var(--font-mono); font-size:0.75rem; color:var(--purple-200); letter-spacing:0.04em; margin-bottom:0.4rem; margin-top:1.1rem; }
+  form.involve-form label:first-of-type{margin-top:0;}
+  form.involve-form input, form.involve-form select, form.involve-form textarea{
+    width:100%; padding:0.8rem 1rem; border-radius:10px; border:1px solid rgba(255,255,255,0.18);
+    background:rgba(255,255,255,0.05); color:var(--cream); font-family:var(--font-body); font-size:0.95rem;
+  }
+  form.involve-form input:focus, form.involve-form select:focus, form.involve-form textarea:focus{ outline:2px solid var(--gold); outline-offset:1px; border-color:transparent; }
+  form.involve-form select option{background:var(--purple-950);}
+  form.involve-form textarea{resize:vertical; min-height:88px;}
+  .form-submit{margin-top:1.6rem; width:100%; justify-content:center;}
+  .form-note{font-size:0.78rem; color:var(--purple-200); margin-top:0.9rem;}
+  .form-success{ display:none; margin-top:1.6rem; padding:1rem 1.2rem; border-radius:12px; background:rgba(242,183,5,0.14); border:1px solid var(--gold); color:var(--gold-soft); font-size:0.9rem; }
+  .form-success.show{display:block;}
+  @media (max-width:900px){.involve-grid{grid-template-columns:1fr;}}
+
+  /* ---------- TEAM tab ---------- */
+  .team-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1.4rem;}
+  .team-card{ background:#fff; border:1px solid rgba(107,47,160,0.12); border-radius:18px; padding:1.6rem; }
+  .team-avatar{ width:52px; height:52px; border-radius:50%; background:var(--purple-100); color:var(--purple-600); display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-weight:700; margin-bottom:1rem; }
+  .team-card h4{font-size:1.05rem; color:var(--ink); margin-bottom:0.15rem;}
+  .team-role{font-family:var(--font-mono); font-size:0.72rem; color:var(--purple-600); margin-bottom:0.6rem; display:block;}
+  .team-card p{font-size:0.85rem;}
+  .team-aff{margin-top:0.5rem;}
+  @media (max-width:700px){.team-grid{grid-template-columns:1fr;}}
+
+  /* ---------- CONTACT tab ---------- */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start;}
+  .contact-item{display:flex; gap:1rem; align-items:flex-start; margin-bottom:1.6rem;}
+  .contact-icon{ width:44px; height:44px; border-radius:12px; background:var(--purple-100); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .contact-icon svg{width:20px; height:20px; stroke:var(--purple-600);}
+  .contact-item h4{font-size:0.98rem; color:var(--ink); margin-bottom:0.15rem;}
+  .contact-item p, .contact-item a{font-size:0.92rem;}
+  .contact-item a{color:var(--purple-600); font-weight:600;}
+  @media (max-width:850px){.contact-grid{grid-template-columns:1fr;}}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--purple-950); color:var(--purple-200); padding:4rem 0 2rem;}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:3rem; padding-bottom:3rem; border-bottom:1px solid var(--line);}
+  .footer-logo{font-family:var(--font-display); font-weight:800; font-size:1.4rem; color:var(--cream); margin-bottom:0.9rem;}
+  .footer-logo span{color:var(--gold);}
+  .footer-tag{font-size:0.92rem; max-width:22rem;}
+  .footer-col h5{font-family:var(--font-mono); font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:1rem;}
+  .footer-col a, .footer-col p{display:block; font-size:0.9rem; margin-bottom:0.6rem; background:none; border:none; cursor:pointer; text-align:left; color:var(--purple-200); font-family:var(--font-body);}
+  .footer-col a:hover{color:var(--gold);}
+  .footer-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:1.6rem; font-size:0.8rem; flex-wrap:wrap; gap:1rem;}
+  .social-row{display:flex; gap:0.9rem;}
+  .social-row a{ width:36px; height:36px; border-radius:50%; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; }
+  .social-row a:hover{border-color:var(--gold); color:var(--gold);}
+  .social-row svg{width:16px; height:16px;}
+  @media (max-width:800px){.footer-grid{grid-template-columns:1fr; gap:2rem;}}
+
+  @keyframes fadeUp{ from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);} }
+  .anim{animation:fadeUp .6s ease both;}
+  .anim.d1{animation-delay:.05s;} .anim.d2{animation-delay:.13s;} .anim.d3{animation-delay:.21s;} .anim.d4{animation-delay:.29s;} .anim.d5{animation-delay:.37s;}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="logo" data-tab="home">Purple<span>Tribe</span></a>
+    <nav class="tabs" id="tabs">
+      <button class="tab-btn" data-tab="home">Home</button>
+      <button class="tab-btn" data-tab="about">About</button>
+      <button class="tab-btn" data-tab="what-we-do">What We Do</button>
+      <button class="tab-btn" data-tab="events">Events</button>
+      <button class="tab-btn" data-tab="involved">Get Involved</button>
+      <button class="tab-btn" data-tab="team">Team</button>
+      <button class="tab-btn" data-tab="contact">Contact</button>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" data-tab="involved" style="padding:0.6rem 1.2rem; font-size:0.85rem;">Volunteer</a>
+      <a class="btn btn-gold" data-tab="involved" style="padding:0.6rem 1.2rem; font-size:0.85rem;">Get Involved</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= HOME ================= -->
+<section class="panel active" id="panel-home">
+
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow anim d1">A YOUTH DEVELOPMENT INITIATIVE</div>
+        <h1 class="anim d2">Every young person deserves a reason to <em>take their future seriously.</em></h1>
+        <p class="lead anim d3">Purple Tribe brings conferences, mentorship and community to young people — helping them grow not only academically, but in character, purpose and conviction. We're starting in Takoradi, Ghana, but our vision reaches further than that.</p>
+        <div class="hero-ctas anim d4">
+          <a class="btn btn-gold" data-tab="what-we-do">See what we do</a>
+          <a class="btn btn-ghost" data-tab="involved">Get involved</a>
+        </div>
+      </div>
+
+      <div class="pillars-wrap anim d5">
+        <div class="pillar-flow">
+          <div class="pillar-node">
+            <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3M16 3v3M4 9h16M5 6h14a1 1 0 011 1v12a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1z"/></svg></div>
+            <div class="pillar-label">Conference</div>
+          </div>
+          <svg class="pillar-arrow" viewBox="0 0 40 20" width="40"><path d="M2 10h30M26 4l8 6-8 6" fill="none" stroke="#8A4FC2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="pillar-node">
+            <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-1a4 4 0 00-4-4H7a4 4 0 00-4 4v1M10 11a4 4 0 100-8 4 4 0 000 8zM19 8v6M22 11h-6"/></svg></div>
+            <div class="pillar-label">Club</div>
+          </div>
+          <svg class="pillar-arrow" viewBox="0 0 40 20" width="40"><path d="M2 10h30M26 4l8 6-8 6" fill="none" stroke="#8A4FC2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="pillar-node">
+            <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+            <div class="pillar-label">Mentor</div>
+          </div>
+        </div>
+        <p class="pillar-caption">One journey. Every young person who meets us at a conference has somewhere to go next.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sofar">
+    <div class="wrap">
+      <div class="sofar-card">
+        <div class="sofar-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg></div>
+        <div>
+          <h3>Where we've started</h3>
+          <p>In [Month, Year], we held our first Purple Tribe Conference at [School Name] — [X] students, a full day of talks, discussion and mentorship. It's the beginning of what we intend to keep doing, in more schools, for more young people.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-pad bg-light">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">WHAT WE DO</div>
+        <h2 style="font-size:var(--fs-h3);">A conference, then a community.</h2>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-num">01</div>
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3M16 3v3M4 9h16M5 6h14a1 1 0 011 1v12a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1z"/></svg></div>
+          <h3>Conferences</h3>
+          <p>A full day of speakers, performances, discussion and mentorship — built around taking life seriously.</p>
+        </div>
+        <div class="card">
+          <div class="card-num">02</div>
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-1a4 4 0 00-4-4H7a4 4 0 00-4 4v1M10 11a4 4 0 100-8 4 4 0 000 8zM19 8v6M22 11h-6"/></svg></div>
+          <h3>The Club</h3>
+          <p>A student-led group that keeps the conversation going, in school, after the conference ends.</p>
+        </div>
+        <div class="card">
+          <div class="card-num">03</div>
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+          <h3>Mentorship</h3>
+          <p>Real relationships that carry young people through the rest of the school year, and beyond.</p>
+        </div>
+      </div>
+      <button class="teaser-link" data-tab="what-we-do">See the full picture →</button>
+    </div>
+  </div>
+
+  <div class="section-pad bg-dark" style="padding-top:3rem; padding-bottom:3rem;">
+    <div class="wrap" style="text-align:center;">
+      <h3 style="color:var(--cream); margin-bottom:0.8rem;">Want to be part of this?</h3>
+      <p style="color:var(--purple-200); max-width:32rem; margin:0 auto 1.6rem;">Whether you lead a school, or want to speak or mentor — there's a place for you.</p>
+      <a class="btn btn-gold" data-tab="involved">Get involved</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="panel" id="panel-about">
+  <div class="section-pad bg-light">
+    <div class="wrap">
+      <div class="section-head" style="margin:0 auto 3rem; text-align:center; max-width:38rem;">
+        <div class="eyebrow" style="text-align:center;">ABOUT PURPLE TRIBE</div>
+        <h2>Mission, vision & values.</h2>
+      </div>
+
+      <div class="mv-block">
+        <div class="eyebrow mv-label">OUR MISSION</div>
+        <p class="mv-statement">Our mission is to raise young people of character and conviction — helping them take their studies, their faith and their future seriously, so they leave school ready to shape the world, not just enter it.</p>
+      </div>
+
+      <div class="mv-block">
+        <div class="eyebrow mv-label">OUR VISION</div>
+        <p class="mv-statement">Our vision is a generation of young people who are not only academically capable, but grounded — who know what they believe, why it matters, and how to live it out.</p>
+      </div>
+
+      <div class="section-head" style="margin:3rem auto 2rem; text-align:center; max-width:38rem;">
+        <div class="eyebrow" style="text-align:center;">OUR VALUES</div>
+        <p>Purple Tribe's values guide every conference, every club night, and every conversation.</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card value-card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4M12 3l8 4v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V7z"/></svg></div>
+          <h3>Character</h3>
+          <p>Integrity over shortcuts, even when no one's watching.</p>
+          <span class="value-ref">Proverbs 22:1</span>
+        </div>
+        <div class="card value-card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg></div>
+          <h3>Excellence</h3>
+          <p>Doing the work well, not just doing enough.</p>
+          <span class="value-ref">Colossians 3:23</span>
+        </div>
+        <div class="card value-card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-1a4 4 0 00-4-4H7a4 4 0 00-4 4v1M10 11a4 4 0 100-8 4 4 0 000 8zM19 8v6M22 11h-6"/></svg></div>
+          <h3>Community</h3>
+          <p>No one grows alone — we walk with young people, not just at them.</p>
+          <span class="value-ref">Ecclesiastes 4:9–10</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHAT WE DO ================= -->
+<section class="panel" id="panel-what-we-do">
+  <div class="section-pad bg-light">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">WHAT WE DO</div>
+        <h2>A day that starts something.</h2>
+        <p>Everything begins with a conference. What follows is what makes it last.</p>
+      </div>
+
+      <div class="feature-block">
+        <div>
+          <div class="eyebrow">01 · THE MAIN EVENT</div>
+          <h3 style="margin-top:0.6rem;">Conferences</h3>
+          <p style="margin-top:0.8rem;">A full day in a school hall — speaker sessions, performances, honest discussion and mentorship, all built around one theme: taking life seriously. Not just studies, but character, purpose and faith. Students leave with something to think about, and a next step to take.</p>
+          <div class="feature-chips">
+            <span class="chip">Speaker Sessions</span>
+            <span class="chip">Performances</span>
+            <span class="chip">Discussion</span>
+            <span class="chip">Mentorship</span>
+          </div>
+        </div>
+        <div class="feature-visual">
+          <div class="agenda-row"><div class="agenda-time">Morning</div><div class="agenda-title">Opening & keynote sessions</div></div>
+          <div class="agenda-row"><div class="agenda-time">Midday</div><div class="agenda-title">Performances & energy</div></div>
+          <div class="agenda-row"><div class="agenda-time">Afternoon</div><div class="agenda-title">Panel & open discussion</div></div>
+          <div class="agenda-row"><div class="agenda-time">Close</div><div class="agenda-title">Mentorship sign-ups</div></div>
+        </div>
+      </div>
+
+      <div class="support-grid">
+        <div class="support-card">
+          <div class="eyebrow" style="color:var(--purple-600);">02 · WHAT COMES NEXT</div>
+          <h3>The Purple Tribe Club</h3>
+          <p>After the conference ends, the conversation doesn't have to. Where a school welcomes it, we help set up a student-led club — run by a student president, guided by a patron teacher, meeting every two weeks to keep working on the same things: study habits, character, purpose, and support.</p>
+        </div>
+        <div class="support-card">
+          <div class="eyebrow" style="color:var(--purple-600);">03 · THE LONG GAME</div>
+          <h3>Mentorship & Beyond</h3>
+          <p>Real relationships that outlast a single event. Students who want to go further are matched with mentors and stay connected through a WhatsApp community — through holidays, exams, and whatever comes after school.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-pad bg-tint" style="padding-top:3rem; padding-bottom:3rem;">
+    <div class="wrap" style="text-align:center;">
+      <h3 style="margin-bottom:0.6rem;">Wondering what's coming up?</h3>
+      <p style="max-width:28rem; margin:0 auto 1.4rem;">See our events page for what's planned next.</p>
+      <button class="btn btn-dark" data-tab="events" style="background:var(--purple-950); color:var(--cream);">View events</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EVENTS ================= -->
+<section class="panel" id="panel-events">
+  <div class="section-pad bg-light">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">EVENTS</div>
+        <h2>What's coming up.</h2>
+        <p>Where we'll list upcoming conferences and how to register or attend.</p>
+      </div>
+
+      <div class="empty-state">
+        <div class="empty-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3M16 3v3M4 9h16M5 6h14a1 1 0 011 1v12a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1z"/><path d="M9 15l2 2 4-4" stroke-dasharray="1 3"/></svg>
+        </div>
+        <h3>This page is under construction</h3>
+        <p>We're putting our events calendar together. Check back later, or get involved now so we can reach you directly when the next one is confirmed.</p>
+        <button class="btn btn-gold" data-tab="involved" style="margin-top:1.4rem;">Get involved</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GET INVOLVED ================= -->
+<section class="panel" id="panel-involved">
+  <div class="section-pad bg-light">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">GET INVOLVED</div>
+        <h2>Two ways in.</h2>
+        <p>Whether you lead a school or want to give your time — there's a place for you.</p>
+      </div>
+
+      <div class="involve-grid">
+        <div class="path-list">
+          <div class="path-card active" data-path="register">
+            <h4>Bring Purple Tribe to your school</h4>
+            <p>Headmasters and guidance coordinators — request a conference for your students.</p>
+          </div>
+          <div class="path-card" data-path="volunteer">
+            <h4>Volunteer, speak or mentor</h4>
+            <p>Share your story at a conference, patron a club, or mentor a student through the school year.</p>
+          </div>
+        </div>
+
+        <form class="involve-form" id="involveForm">
+          <label for="name">Full name</label>
+          <input id="name" type="text" placeholder="Ama Mensah" required>
+
+          <label for="contact">Email or phone</label>
+          <input id="contact" type="text" placeholder="ama@email.com or 024 000 0000" required>
+
+          <label for="interest">I'm interested in</label>
+          <select id="interest">
+            <option value="register">Bringing Purple Tribe to my school</option>
+            <option value="volunteer">Volunteering, speaking or mentoring</option>
+          </select>
+
+          <label for="org">School or organisation (optional)</label>
+          <input id="org" type="text" placeholder="e.g. Fijai SHS">
+
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Tell us a little about what you'd like to do with Purple Tribe"></textarea>
+
+          <button type="submit" class="btn btn-gold form-submit">Send it in</button>
+          <div class="form-note">We reply within a few days. No spam — ever.</div>
+          <div class="form-success" id="formSuccess">Thank you — your message is in. Someone from the Purple Tribe team will reach out soon.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TEAM (real members) ================= -->
+<section class="panel" id="panel-team">
+  <div class="section-pad bg-light">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">THE TEAM</div>
+        <h2>Who's behind it.</h2>
+        <p>A volunteer team of working professionals, committed to building the next generation.</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-card"><div class="team-avatar">CW</div><h4>Collins Wilson</h4><span class="team-role">Project Lead</span><p>School relations, partnerships, accountability.</p><p class="team-aff">Quality Coordinator, Noguchi Memorial Institute for Medical Research (NMIMR), Dept. of Immunology</p></div>
+        <div class="team-card"><div class="team-avatar">CA</div><h4>Charles Abotsi</h4><span class="team-role">Programmes &amp; Logistics Lead</span><p>Event planning, speakers, venue, logistics.</p><p class="team-aff">Product Manager, Hubtel Ltd.</p></div>
+        <div class="team-card"><div class="team-avatar">EA</div><h4>Emmanuel Adepa</h4><span class="team-role">Media &amp; Website</span><p>Website, photos, WhatsApp community.</p><p class="team-aff">Office Manager, Flowersgh Ltd.; Co-founder, Muna</p></div>
+        <div class="team-card"><div class="team-avatar">MM</div><h4>Mirabel Martey</h4><span class="team-role">Clubs &amp; Mentorship</span><p>Club patrons, mentor matching.</p><p class="team-aff">Retail Pharmacy Director, Parmarts Pharmacy</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="panel" id="panel-contact">
+  <div class="section-pad bg-light">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">CONTACT</div>
+        <h2>Let's talk.</h2>
+        <p>Have a question, or want to reach us directly rather than filling out a form? Here's how.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div>
+          <div class="contact-item">
+            <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4zM4 4l8 8 8-8"/></svg></div>
+            <div><h4>Email</h4><a href="mailto:info.purpletribe@gmail.com">info.purpletribe@gmail.com</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.9.35 1.79.68 2.63a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.45-1.45a2 2 0 012.11-.45c.84.33 1.73.56 2.63.68A2 2 0 0122 16.92z"/></svg></div>
+            <div><h4>Phone</h4><a href="tel:+233240635675">+233 24 063 5675</a></div>
+          </div>
+        </div>
+        <div>
+          <div class="contact-item">
+            <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><h4>Location</h4><p>Takoradi, Western Region, Ghana</p></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
+            <div><h4>WhatsApp community</h4><a href="#" data-tab="involved">Join via Get Involved →</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Purple<span>Tribe</span></div>
+        <p class="footer-tag">A youth development initiative running conferences, clubs and mentorship — starting in Takoradi, Ghana.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Site</h5>
+        <a data-tab="about">About</a>
+        <a data-tab="what-we-do">What We Do</a>
+        <a data-tab="events">Events</a>
+        <a data-tab="involved">Get Involved</a>
+        <a data-tab="team">Team</a>
+      </div>
+      <div class="footer-col">
+        <h5>Reach us</h5>
+        <p>info.purpletribe@gmail.com</p>
+        <p>Takoradi, Western Region, Ghana</p>
+        <a data-tab="contact">Contact →</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Purple Tribe.</span>
+      <div class="social-row">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></a>
+        <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const VALID_TABS = ['home','about','what-we-do','events','involved','team','contact'];
+
+  function switchTab(name, opts = {}) {
+    if (!VALID_TABS.includes(name)) name = 'home';
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+    const panel = document.getElementById('panel-' + name);
+    if (panel) panel.classList.add('active');
+    if (!opts.silent) history.replaceState(null, '', '#' + name);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    tabsEl.classList.remove('open');
+    if (opts.preselect) preselect(opts.preselect);
+  }
+
+  // wire up every element with data-tab (nav buttons, footer links, in-content CTAs)
+  document.querySelectorAll('[data-tab]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchTab(el.dataset.tab, { preselect: el.dataset.preselect });
+    });
+  });
+
+  // mobile nav
+  const menuBtn = document.getElementById('menuBtn');
+  const tabsEl = document.getElementById('tabs');
+  menuBtn.addEventListener('click', () => tabsEl.classList.toggle('open'));
+
+  // path cards -> preselect form dropdown
+  function preselect(value){
+    const select = document.getElementById('interest');
+    if (select && value) select.value = value;
+    document.querySelectorAll('.path-card').forEach(c => c.classList.toggle('active', c.dataset.path === value));
+  }
+  document.querySelectorAll('.path-card').forEach(card => {
+    card.addEventListener('click', () => preselect(card.dataset.path));
+  });
+
+  // form submit (in-memory only, no backend/storage)
+  const form = document.getElementById('involveForm');
+  const success = document.getElementById('formSuccess');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    success.classList.add('show');
+    form.reset();
+  });
+
+  // initial tab from hash, default home
+  const initial = (location.hash || '').replace('#', '');
+  switchTab(VALID_TABS.includes(initial) ? initial : 'home', { silent: true });
+</script>
+
+</body>
+</html>
+
+</body></html>
