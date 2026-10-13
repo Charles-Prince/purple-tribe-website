@@ -179,7 +179,7 @@
     background:var(--purple-950); border-radius:20px; padding:2rem; display:flex; flex-direction:column; gap:1.1rem;
   }
   .feature-visual .agenda-row{display:flex; align-items:baseline; gap:0.9rem;}
-  .feature-visual .agenda-time{font-family:var(--font-mono); font-size:0.75rem; color:var(--gold-soft); min-width:52px;}
+  .feature-visual .agenda-time{font-family:var(--font-mono); font-size:0.75rem; color:var(--gold-soft); min-width:52px; text-transform:uppercase; letter-spacing:0.08em;}
   .feature-visual .agenda-title{color:var(--cream); font-weight:700; font-size:0.92rem;}
   @media (max-width:850px){ .feature-block{grid-template-columns:1fr;} }
 
@@ -286,6 +286,207 @@
   @keyframes fadeUp{ from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);} }
   .anim{animation:fadeUp .6s ease both;}
   .anim.d1{animation-delay:.05s;} .anim.d2{animation-delay:.13s;} .anim.d3{animation-delay:.21s;} .anim.d4{animation-delay:.29s;} .anim.d5{animation-delay:.37s;}
+
+  /* ---------- V2: PLAYFUL LAYER ---------- */
+  body{overflow-x:clip;}
+  .panel.active{animation:panelIn .35s ease both;}
+  @keyframes panelIn{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:none;}}
+  .btn-outline{background:transparent; color:var(--purple-800); border-color:rgba(107,47,160,0.4);}
+  .btn-outline:hover{border-color:var(--purple-600); transform:translateY(-2px);}
+
+  .hero{padding:4.5rem 0 4rem;}
+  .hero h1{font-size:clamp(2.8rem, 6vw + 1rem, 5.8rem); font-weight:700; line-height:1;}
+  .hero h1 .h1-soft{display:block; margin-top:0.35em; font-size:0.5em; font-weight:500; font-style:italic; color:var(--purple-200);}
+  .rotor{display:inline-block; position:relative;}
+  .rotor em{display:inline-block; position:relative; background:linear-gradient(transparent 62%, rgba(242,183,5,0.38) 62%); padding:0 0.08em;}
+  .rotor em.swap{animation:swap .45s ease both;}
+  @keyframes swap{from{opacity:0; transform:translateY(0.3em);} to{opacity:1; transform:none;}}
+
+  .stickers{position:relative; display:flex; flex-direction:column; gap:1rem; padding:1rem 0;}
+  .sticker{display:flex; gap:1rem; align-items:center; padding:1.2rem 1.4rem; border-radius:20px; box-shadow:0 14px 30px rgba(0,0,0,0.28); transition:transform .25s ease; max-width:22rem;}
+  .sticker h3{font-size:1.15rem; margin-bottom:0.2rem;}
+  .sticker p{font-size:0.88rem; color:inherit; opacity:0.85;}
+  .sticker-ico{width:46px; height:46px; border-radius:14px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:rgba(27,10,46,0.1);}
+  .sticker-ico svg{width:24px; height:24px; stroke:currentColor;}
+  .s1{background:var(--gold); color:var(--purple-950); transform:rotate(-3deg); align-self:flex-start;}
+  .s2{background:var(--cream); color:var(--purple-950); transform:rotate(2deg); align-self:center; margin-top:-0.3rem;}
+  .s3{background:var(--purple-500); color:#fff; transform:rotate(-2deg); align-self:flex-end; margin-top:-0.3rem;}
+  .s3 .sticker-ico{background:rgba(255,255,255,0.18);}
+  .sticker:hover{transform:rotate(0) translateY(-6px) scale(1.03);}
+  @media (max-width:900px){.sticker{max-width:none;} .s1,.s2,.s3{align-self:stretch;}}
+
+  .ticker{background:var(--gold); color:var(--purple-950); overflow:hidden; border-block:2px solid var(--purple-950);}
+  .ticker-track{display:flex; gap:2.4rem; width:max-content; padding:0.8rem 0; animation:tick 38s linear infinite;}
+  .ticker-track span{font-family:var(--font-mono); font-weight:500; font-size:0.9rem; letter-spacing:0.12em; text-transform:uppercase; white-space:nowrap;}
+  .ticker-track span::after{content:'✦'; margin-left:2.4rem;}
+  @keyframes tick{to{transform:translateX(-50%);}}
+
+  .polaroids{display:flex; gap:1.6rem; justify-content:center; flex-wrap:wrap; margin-top:2.6rem;}
+  .polaroid{background:#fff; padding:0.7rem 0.7rem 0.4rem; border-radius:6px; box-shadow:0 12px 26px rgba(0,0,0,0.35); width:min(220px, 100%); transition:transform .25s ease;}
+  .polaroid .ph{aspect-ratio:1/1; background:radial-gradient(circle at 30% 25%, var(--purple-500), var(--purple-800) 70%); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;}
+  .polaroid:nth-child(2) .ph{background:radial-gradient(circle at 70% 25%, var(--gold), #C58F00 75%);}
+  .polaroid:nth-child(3) .ph{background:radial-gradient(circle at 30% 70%, var(--purple-600), var(--purple-950) 75%);}
+  .polaroid .ph svg{width:46%; height:46%; stroke:#fff; opacity:0.92;}
+  .polaroid:nth-child(2) .ph svg{stroke:var(--purple-950);}
+  .polaroid .ph::after{content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,rgba(255,255,255,0.06) 0 2px,transparent 2px 14px);}
+  .polaroid figcaption{font-family:var(--font-display); font-style:italic; text-align:center; color:var(--purple-800); padding:0.6rem 0 0.3rem; font-size:0.95rem;}
+  .p1{transform:rotate(-4deg);} .p2{transform:rotate(2deg) translateY(10px);} .p3{transform:rotate(-2deg);}
+  .polaroid:hover{transform:rotate(0) scale(1.04);}
+
+  .numbers{background:var(--cream); padding:3.4rem 0 1rem;}
+  .numbers-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:2rem;}
+  .num b{display:block; font-family:var(--font-display); font-weight:800; font-size:clamp(3rem,5vw,4.6rem); line-height:1; color:var(--purple-600);}
+  .num span{display:block; margin-top:0.5rem; color:var(--gray); font-size:0.95rem; max-width:15rem;}
+  @media (max-width:700px){.numbers-grid{grid-template-columns:1fr; gap:1.4rem;}}
+
+  .day-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; align-items:start;}
+  .stop{background:#fff; border-radius:18px; padding:1.3rem 1.2rem; border:1px solid rgba(107,47,160,0.14); transition:transform .22s ease, box-shadow .22s ease;}
+  .stop:nth-child(even){margin-top:1.6rem;}
+  .stop:hover{transform:translateY(-6px) rotate(-1deg); box-shadow:0 16px 30px rgba(59,16,83,0.14);}
+  .stop-time{display:inline-block; text-transform:uppercase; letter-spacing:0.1em; font-family:var(--font-mono); font-size:0.72rem; font-weight:500; background:var(--purple-950); color:var(--gold-soft); padding:0.3rem 0.6rem; border-radius:999px; margin-bottom:0.8rem;}
+  .stop h4{font-family:var(--font-display); font-size:1.15rem; color:var(--ink); margin-bottom:0.4rem;}
+  .stop p{font-size:0.86rem;}
+  @media (max-width:1000px){.day-grid{grid-template-columns:1fr 1fr;} .stop:nth-child(even){margin-top:0;}}
+  @media (max-width:560px){.day-grid{grid-template-columns:1fr;}}
+
+  .quiz{max-width:44rem; background:#fff; border:1px solid rgba(107,47,160,0.14); border-radius:24px; padding:clamp(1.4rem,3vw,2.2rem);}
+  .quiz-step h4, .quiz-result h3{font-family:var(--font-display); font-size:1.35rem; color:var(--ink); margin-bottom:1rem;}
+  .chips{display:flex; flex-wrap:wrap; gap:0.7rem;}
+  .q-chip{background:var(--purple-100); color:var(--purple-800); border:1.5px solid transparent; border-radius:999px; padding:0.7rem 1.2rem; font-weight:600; font-size:0.95rem; cursor:pointer; transition:transform .15s ease, background .15s ease, border-color .15s ease;}
+  .q-chip:hover{transform:translateY(-2px) rotate(-1deg); border-color:var(--purple-600);}
+  .q-chip:focus-visible{outline:3px solid var(--gold); outline-offset:2px;}
+  .quiz-result .eyebrow{color:var(--purple-600); margin-bottom:0.6rem;}
+  .quiz-result p{margin-bottom:1.4rem;}
+  .quiz-result .hero-ctas{display:flex; gap:0.8rem; flex-wrap:wrap;}
+
+  .voice{padding:5rem 0;}
+  .quote-slots{display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;}
+  .quote-slot{border:1.5px dashed rgba(251,227,163,0.5); border-radius:20px; padding:1.8rem; position:relative; min-width:0;}
+  .quote-slot .qm{font-family:var(--font-display); font-size:4rem; line-height:0.6; color:var(--gold); display:block; margin-bottom:0.6rem;}
+  .quote-slot p{font-family:var(--font-display); font-style:italic; font-size:1.4rem; color:var(--cream); opacity:0.75;}
+  .quote-slot small{display:block; margin-top:1rem; font-family:var(--font-mono); color:var(--purple-200); font-size:0.75rem; letter-spacing:0.06em; text-transform:uppercase;}
+  @media (max-width:700px){.quote-slots{grid-template-columns:1fr;}}
+
+  .card:hover, .support-card{transition:transform .22s ease, box-shadow .22s ease;}
+  .support-card:hover{transform:translateY(-5px) rotate(-0.6deg); box-shadow:0 16px 30px rgba(59,16,83,0.12);}
+  .team-card{transition:transform .22s ease, box-shadow .22s ease;}
+  .team-card:hover{transform:translateY(-5px) rotate(-0.8deg); box-shadow:0 16px 30px rgba(59,16,83,0.12);}
+  .contact-note{font-family:var(--font-display); font-style:italic; color:var(--purple-600); font-size:1.15rem; margin-top:0.4rem;}
+
+  @media (prefers-reduced-motion: reduce){
+    .ticker-track{animation:none; flex-wrap:wrap; width:auto; padding-inline:1rem;}
+    .panel.active, .rotor em.swap{animation:none;}
+  }
+
+  /* ---------- V2: INNER PAGES ---------- */
+  .page-hero{background:radial-gradient(120% 120% at 10% 0%, var(--purple-800) 0%, var(--purple-950) 60%); color:var(--cream); padding:4rem 0 3.4rem; position:relative; overflow:hidden;}
+  .page-hero::after{content:''; position:absolute; right:-80px; top:-80px; width:300px; height:300px; border-radius:50%; border:2px solid rgba(242,183,5,0.25); box-shadow:0 0 0 36px rgba(242,183,5,0.05); pointer-events:none;}
+  .page-hero .wrap{position:relative; z-index:1;}
+  .tag-pill{display:inline-block; font-family:var(--font-mono); font-size:0.75rem; letter-spacing:0.14em; background:var(--gold); color:var(--purple-950); padding:0.4rem 0.9rem; border-radius:999px; transform:rotate(-2deg); margin-bottom:1.4rem; font-weight:500;}
+  .page-hero h1{font-size:clamp(2.4rem, 5vw + 1rem, 4.8rem); font-weight:700; line-height:1.02; max-width:16ch; text-wrap:balance;}
+  .page-hero h1 em{font-style:italic; color:var(--gold); background:linear-gradient(transparent 64%, rgba(242,183,5,0.3) 64%); padding:0 0.06em;}
+  .page-hero p{margin-top:1.2rem; font-family:var(--font-display); font-style:italic; font-size:clamp(1.1rem,1.2vw + 0.8rem,1.45rem); color:var(--purple-200); max-width:34rem;}
+
+  .mv-statement{font-size:clamp(1.4rem,2vw + 1rem,2.1rem);}
+  .mv-block{background:#fff; border:1px solid rgba(107,47,160,0.12); border-radius:24px; padding:2rem clamp(1.2rem,4vw,3rem); transition:transform .25s ease;}
+  .mv-block:nth-of-type(1){transform:rotate(-0.6deg);}
+  .mv-block:nth-of-type(2){transform:rotate(0.6deg);}
+  .mv-block:hover{transform:rotate(0);}
+  .value-card:nth-child(1){transform:rotate(-1deg);} .value-card:nth-child(3){transform:rotate(1deg);}
+  .value-card:hover{transform:translateY(-6px) rotate(0);}
+  .feature-block{transition:transform .25s ease;}
+  .feature-block:hover{transform:rotate(-0.4deg);}
+  .path-card{transition:transform .2s ease, border-color .15s ease, background .15s ease;}
+  .path-card:hover{transform:translateX(6px) rotate(-0.4deg);}
+  .empty-state{transform:rotate(-0.6deg);}
+
+  .lookback{max-width:46rem; margin:4rem auto 0; text-align:center;}
+  .lookback .eyebrow{color:var(--purple-600); margin-bottom:0.6rem;}
+  .lookback h3{font-size:clamp(1.6rem,2vw + 1rem,2.2rem); color:var(--ink); margin-bottom:0.8rem;}
+  .lookback p{max-width:38rem; margin:0 auto;}
+  .polaroids.small .polaroid{width:min(170px,100%);}
+  .polaroids.small{margin-top:2rem;}
+
+  .team-card:nth-child(1) .team-avatar{background:var(--gold); color:var(--purple-950);}
+  .team-card:nth-child(2) .team-avatar{background:var(--purple-600); color:#fff;}
+  .team-card:nth-child(3) .team-avatar{background:var(--purple-950); color:var(--gold-soft);}
+  .team-card:nth-child(4) .team-avatar{background:var(--purple-500); color:#fff;}
+  .team-card:nth-child(even){margin-top:1.4rem;}
+  .team-avatar{transform:rotate(-6deg);}
+  @media (max-width:700px){.team-card:nth-child(even){margin-top:0;}}
+  .contact-icon{transition:transform .2s ease;} .contact-item:hover .contact-icon{transform:rotate(-8deg) scale(1.08);}
+
+  /* ---------- MENTORSHIP PATHWAY (interactive trail) ---------- */
+  .pathway-sec{background:radial-gradient(90% 70% at 80% 10%, #3B1053 0%, var(--purple-950) 65%); overflow:hidden;}
+  .where{display:flex; align-items:center; gap:1rem 1.4rem; flex-wrap:wrap; margin-bottom:1.6rem;}
+  .where-label{font-family:var(--font-mono); font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold-soft);}
+  .w-chip{background:rgba(255,255,255,0.08); color:var(--cream); border:1.5px solid rgba(255,255,255,0.22); border-radius:999px; padding:0.6rem 1.1rem; font-weight:600; font-size:0.9rem; cursor:pointer; transition:transform .15s ease, background .15s ease, border-color .15s ease;}
+  .w-chip:hover{transform:translateY(-2px); border-color:var(--gold);}
+  .w-chip.on{background:var(--gold); color:var(--purple-950); border-color:var(--gold);}
+  .w-chip:focus-visible, .node:focus-visible, .lg:focus-visible{outline:3px solid var(--gold); outline-offset:3px;}
+
+  .trail-scroll{overflow-x:auto; padding:2.6rem 0 0.4rem; margin:0 -0.5rem; scrollbar-width:thin;}
+  .trail{position:relative; min-width:900px; aspect-ratio:1200/300; margin:0 0.5rem;}
+  .trail svg{position:absolute; inset:0; width:100%; height:100%; overflow:visible;}
+  .node{position:absolute; width:46px; height:46px; margin:-23px 0 0 -23px; border-radius:50%; border:3px solid rgba(255,255,255,0.9); font-family:var(--font-mono); font-weight:500; font-size:0.9rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:transform .2s ease, box-shadow .2s ease; padding:0;}
+  .node:hover{transform:scale(1.15);}
+  .node.st0{background:var(--gold); color:var(--purple-950);}
+  .node.st1{background:var(--purple-500); color:#fff;}
+  .node.st2{background:var(--purple-800); color:var(--gold-soft);}
+  .node.st3{background:var(--purple-200); color:var(--purple-950);}
+  .node.active{transform:scale(1.35); box-shadow:0 0 0 6px rgba(242,183,5,0.35), 0 10px 24px rgba(0,0,0,0.4); z-index:3;}
+  .node.done{border-color:var(--gold);}
+  .node .label{position:absolute; top:calc(100% + 0.5rem); left:50%; transform:translateX(-50%); font-family:var(--font-body); font-size:0.74rem; font-weight:600; color:var(--purple-200); white-space:nowrap; pointer-events:none;}
+  .node.active .label{color:var(--gold-soft);}
+  .node.up .label{top:auto; bottom:calc(100% + 0.5rem);}
+  .here{position:absolute; bottom:calc(100% + 1.6rem); left:50%; transform:translateX(-50%); background:var(--gold); color:var(--purple-950); font-family:var(--font-mono); font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase; padding:0.25rem 0.55rem; border-radius:999px; white-space:nowrap; pointer-events:none;}
+  .node.up .here{bottom:auto; top:calc(100% + 1.7rem);}
+
+  .stage-legend{display:flex; flex-wrap:wrap; gap:0.7rem; margin:1.4rem 0 2rem;}
+  .lg{display:inline-flex; align-items:center; gap:0.55rem; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:var(--cream); border-radius:999px; padding:0.5rem 1rem; font-size:0.86rem; font-weight:600; cursor:pointer;}
+  .lg i{width:12px; height:12px; border-radius:50%; display:inline-block;}
+  .lg:hover{border-color:var(--gold);}
+  .lg.on{background:rgba(242,183,5,0.16); border-color:var(--gold);}
+
+  .step-card{display:grid; grid-template-columns:minmax(150px,200px) 1fr; background:var(--cream); color:var(--ink); border-radius:26px; overflow:hidden; box-shadow:0 24px 50px rgba(0,0,0,0.35);}
+  .step-left{background:var(--gold); color:var(--purple-950); padding:1.6rem 1.4rem; display:flex; flex-direction:column; gap:0.5rem; justify-content:space-between;}
+  .step-card[data-stage="1"] .step-left{background:var(--purple-500); color:#fff;}
+  .step-card[data-stage="2"] .step-left{background:var(--purple-800); color:var(--gold-soft);}
+  .step-card[data-stage="3"] .step-left{background:var(--purple-200); color:var(--purple-950);}
+  .step-num{font-family:var(--font-display); font-weight:800; font-size:5rem; line-height:0.9;}
+  .step-stage{font-family:var(--font-mono); font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; font-weight:500;}
+  .step-count{font-size:0.82rem; opacity:0.8;}
+  .step-right{padding:1.8rem clamp(1.2rem,3vw,2.2rem); min-width:0;}
+  .step-right h3{font-size:clamp(1.6rem,2vw + 1rem,2.2rem); color:var(--ink); margin-bottom:0.7rem;}
+  .step-right > p{font-size:1.02rem; margin-bottom:1.2rem; color:var(--gray);}
+  .away, .mentor-role{display:flex; flex-direction:column; gap:0.2rem; padding:0.9rem 1.1rem; border-radius:14px; margin-bottom:0.8rem; font-size:0.95rem;}
+  .away{background:rgba(242,183,5,0.2);}
+  .mentor-role{background:var(--purple-100);}
+  .away b, .mentor-role b{font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--purple-800);}
+  .step-nav{display:flex; gap:0.8rem; margin-top:1.2rem; flex-wrap:wrap;}
+  .step-nav .btn[disabled]{opacity:0.4; cursor:not-allowed;}
+  .path-end{margin-top:1.8rem; text-align:center; font-family:var(--font-display); font-style:italic; font-size:1.15rem; color:var(--purple-200); max-width:40rem; margin-inline:auto;}
+  @media (max-width:700px){
+    .step-card{grid-template-columns:1fr;}
+    .step-left{flex-direction:row; align-items:center; gap:1rem; flex-wrap:wrap; justify-content:flex-start;}
+    .step-num{font-size:3rem;}
+  }
+
+  /* ---------- POLICY PAGES ---------- */
+  .doc{max-width:46rem; margin:0 auto;}
+  .doc .updated{font-family:var(--font-mono); font-size:0.78rem; color:var(--purple-600); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:1.6rem;}
+  .doc h3{font-size:1.5rem; color:var(--ink); margin:2.2rem 0 0.7rem;}
+  .doc p, .doc li{font-size:1rem; line-height:1.65; color:var(--gray);}
+  .doc p + p{margin-top:0.8rem;}
+  .doc ul{list-style:disc; padding-left:1.3rem; display:flex; flex-direction:column; gap:0.45rem; margin-top:0.6rem;}
+  .doc a, .doc .link{color:var(--purple-600); font-weight:600; text-decoration:underline; cursor:pointer;}
+  .doc .callout{background:var(--purple-100); border-radius:16px; padding:1.1rem 1.3rem; margin:1.4rem 0; color:var(--purple-800);}
+  .doc .callout p{color:var(--purple-800);}
+  .footer-links{display:flex; gap:1.4rem; flex-wrap:wrap;}
+  .footer-links a{cursor:pointer; color:var(--purple-200); font-size:0.8rem;}
+  .footer-links a:hover{color:var(--gold);}
+  .form-note a{color:var(--gold-soft); text-decoration:underline; cursor:pointer;}
+  .bg-dark .section-head .eyebrow{color:var(--gold-soft);}
 </style>
 </head>
 <body>
@@ -318,34 +519,27 @@
   <div class="hero">
     <div class="wrap hero-grid">
       <div>
-        <div class="eyebrow anim d1">A YOUTH DEVELOPMENT INITIATIVE</div>
-        <h1 class="anim d2">Every young person deserves a reason to <em>take their future seriously.</em></h1>
-        <p class="lead anim d3">Purple Tribe brings conferences, mentorship and community to young people — helping them grow not only academically, but in character, purpose and conviction. We're starting in Takoradi, Ghana, but our vision reaches further than that.</p>
+        <div class="eyebrow anim d1">A YOUTH DEVELOPMENT INITIATIVE · TAKORADI, GHANA</div>
+        <h1 class="anim d2">Take your <span class="rotor"><em id="rotor">future</em></span> seriously. <span class="h1-soft">Have fun doing it.</span></h1>
+        <p class="lead anim d3">Purple Tribe brings conferences, clubs and mentors to young people, so they grow in character, purpose and conviction as well as in grades.</p>
         <div class="hero-ctas anim d4">
           <a class="btn btn-gold" data-tab="what-we-do">See what we do</a>
           <a class="btn btn-ghost" data-tab="involved">Get involved</a>
         </div>
       </div>
 
-      <div class="pillars-wrap anim d5">
-        <div class="pillar-flow">
-          <div class="pillar-node">
-            <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3M16 3v3M4 9h16M5 6h14a1 1 0 011 1v12a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1z"/></svg></div>
-            <div class="pillar-label">Conference</div>
-          </div>
-          <svg class="pillar-arrow" viewBox="0 0 40 20" width="40"><path d="M2 10h30M26 4l8 6-8 6" fill="none" stroke="#8A4FC2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div class="pillar-node">
-            <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-1a4 4 0 00-4-4H7a4 4 0 00-4 4v1M10 11a4 4 0 100-8 4 4 0 000 8zM19 8v6M22 11h-6"/></svg></div>
-            <div class="pillar-label">Club</div>
-          </div>
-          <svg class="pillar-arrow" viewBox="0 0 40 20" width="40"><path d="M2 10h30M26 4l8 6-8 6" fill="none" stroke="#8A4FC2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div class="pillar-node">
-            <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
-            <div class="pillar-label">Mentor</div>
-          </div>
-        </div>
-        <p class="pillar-caption">One journey. Every young person who meets us at a conference has somewhere to go next.</p>
+      <div class="stickers anim d5" aria-label="How Purple Tribe works: conference, club, mentor">
+        <div class="sticker s1"><div class="sticker-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3M16 3v3M4 9h16M5 6h14a1 1 0 011 1v12a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1z"/></svg></div><div><h3>The conference</h3><p>Big talks, live acts, trivia and real questions.</p></div></div>
+        <div class="sticker s2"><div class="sticker-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-1a4 4 0 00-4-4H7a4 4 0 00-4 4v1M10 11a4 4 0 100-8 4 4 0 000 8zM19 8v6M22 11h-6"/></svg></div><div><h3>The club</h3><p>A student-led group in your school that keeps the momentum going.</p></div></div>
+        <div class="sticker s3"><div class="sticker-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div><h3>The mentor</h3><p>Someone in your corner after the day is over.</p></div></div>
       </div>
+    </div>
+  </div>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Big talks</span><span>Live music</span><span>Spoken word</span><span>Real questions</span><span>Mentors</span><span>Character</span><span>Purpose</span><span>Faith</span>
+      <span>Big talks</span><span>Live music</span><span>Spoken word</span><span>Real questions</span><span>Mentors</span><span>Character</span><span>Purpose</span><span>Faith</span>
     </div>
   </div>
 
@@ -355,46 +549,112 @@
         <div class="sofar-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg></div>
         <div>
           <h3>Where we've started</h3>
-          <p>In November 2025, we held the Equipped Youth Conference at Akroma Plaza in Takoradi — 110 young people, including students from Ahantaman Girls SHS and Fijai SHS, in a full day of talks, discussion and mentorship. It's the beginning of what we intend to keep doing, in more schools, for more young people.</p>
+          <p>In November 2025, we held the Equipped Youth Conference at Akroma Plaza in Takoradi: 110+ young people, including students from Ahantaman Girls SHS and Fijai SHS, for a day of talks, discussion and mentorship. It's the beginning of what we intend to keep doing, in more schools, for more young people.</p>
         </div>
+      </div>
+      <div class="polaroids" aria-label="Moments from the Equipped Youth Conference">
+        <figure class="polaroid p1"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-1a4 4 0 00-4-4H7a4 4 0 00-4 4v1M10 11a4 4 0 100-8 4 4 0 000 8zM21 20v-1a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><figcaption>The room</figcaption></figure>
+        <figure class="polaroid p2"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v4M8 22h8"/></svg></div><figcaption>On stage</figcaption></figure>
+        <figure class="polaroid p3"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg></div><figcaption>The moment</figcaption></figure>
       </div>
     </div>
   </div>
 
-  <div class="section-pad bg-light">
+  <div class="numbers">
+    <div class="wrap numbers-grid">
+      <div class="num"><b>110+</b><span>young people at our first conference</span></div>
+      <div class="num"><b>2+</b><span>senior high schools in the room</span></div>
+      <div class="num"><b>1</b><span>conference held, with many more to come</span></div>
+    </div>
+  </div>
+
+  <div class="section-pad bg-tint day">
     <div class="wrap">
       <div class="section-head">
-        <div class="eyebrow">WHAT WE DO</div>
-        <h2 style="font-size:var(--fs-h3);">A conference, then a community.</h2>
+        <div class="eyebrow">A DAY WITH US</div>
+        <h2>How a conference day is built to run.</h2>
+        <p>Talks, but also trivia, a panel, live acts and video. No one is left sitting at the back.</p>
       </div>
-      <div class="card-grid">
-        <div class="card">
-          <div class="card-num">01</div>
-          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3M16 3v3M4 9h16M5 6h14a1 1 0 011 1v12a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1z"/></svg></div>
-          <h3>Conferences</h3>
-          <p>A full day of speakers, performances, discussion and mentorship — built around taking life seriously.</p>
-        </div>
-        <div class="card">
-          <div class="card-num">02</div>
-          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-1a4 4 0 00-4-4H7a4 4 0 00-4 4v1M10 11a4 4 0 100-8 4 4 0 000 8zM19 8v6M22 11h-6"/></svg></div>
-          <h3>The Club</h3>
-          <p>A student-led group that keeps the conversation going, in school, after the conference ends.</p>
-        </div>
-        <div class="card">
-          <div class="card-num">03</div>
-          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
-          <h3>Mentorship</h3>
-          <p>Real relationships that carry young people through the rest of the school year, and beyond.</p>
-        </div>
+      <div class="day-grid">
+        <div class="stop"><span class="stop-time">Welcome</span><h4>Doors open</h4><p>Prayer, a warm welcome and a quick hello to who we are.</p></div>
+        <div class="stop"><span class="stop-time">Talk</span><h4>The big talk</h4><p>Taking your studies seriously: habits, discipline, vision.</p></div>
+        <div class="stop"><span class="stop-time">Stage</span><h4>Live on stage</h4><p>Music, spoken word or drama from young people and guests.</p></div>
+        <div class="stop"><span class="stop-time">Play</span><h4>Trivia time</h4><p>Quick-fire questions with rewards for the sharpest teams.</p></div>
+        <div class="stop"><span class="stop-time">Panel</span><h4>Ask anything</h4><p>A panel of speakers and mentors. Your questions, their honest answers.</p></div>
+        <div class="stop"><span class="stop-time">Video</span><h4>Voices from afar</h4><p>Recorded messages from speakers who could not be in the room.</p></div>
+        <div class="stop"><span class="stop-time">Video</span><h4>The highlight reel</h4><p>A video of the day, so everyone sees what they were part of.</p></div>
+        <div class="stop"><span class="stop-time">Next</span><h4>What's next</h4><p>Mentor sign-ups, feedback, and where to find us after today.</p></div>
       </div>
       <button class="teaser-link" data-tab="what-we-do">See the full picture →</button>
     </div>
   </div>
 
-  <div class="section-pad bg-dark" style="padding-top:3rem; padding-bottom:3rem;">
+  <div class="section-pad bg-light quiz-wrap">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">FIND YOUR SPOT</div>
+        <h2>Where would you fit in?</h2>
+        <p>Three quick taps. No sign-up, nothing saved.</p>
+      </div>
+      <div class="quiz" id="quiz">
+        <div class="quiz-step" data-step="0">
+          <h4>1. I'm a…</h4>
+          <div class="chips">
+            <button class="q-chip" data-q="role" data-v="student">Student</button>
+            <button class="q-chip" data-q="role" data-v="school">School leader or teacher</button>
+            <button class="q-chip" data-q="role" data-v="pro">Working professional</button>
+            <button class="q-chip" data-q="role" data-v="parent">Parent or guardian</button>
+          </div>
+        </div>
+        <div class="quiz-step" data-step="1" hidden>
+          <h4>2. I can give…</h4>
+          <div class="chips">
+            <button class="q-chip" data-q="time" data-v="day">A day here and there</button>
+            <button class="q-chip" data-q="time" data-v="regular">A little time, regularly</button>
+            <button class="q-chip" data-q="time" data-v="explore">I'm just exploring</button>
+          </div>
+        </div>
+        <div class="quiz-step" data-step="2" hidden>
+          <h4>3. I'm happiest when I'm…</h4>
+          <div class="chips">
+            <button class="q-chip" data-q="like" data-v="talk">Sharing my story</button>
+            <button class="q-chip" data-q="like" data-v="organise">Organising things</button>
+            <button class="q-chip" data-q="like" data-v="create">Making photos, video or posts</button>
+            <button class="q-chip" data-q="like" data-v="listen">Listening and guiding</button>
+          </div>
+        </div>
+        <div class="quiz-result" id="quizResult" hidden>
+          <div class="eyebrow">YOUR SPOT</div>
+          <h3 id="resultTitle"></h3>
+          <p id="resultBody"></p>
+          <div class="hero-ctas">
+            <button class="btn btn-gold" id="resultCta">Take the next step</button>
+            <button class="btn btn-outline" id="quizReset">Start again</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-pad bg-dark voice">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">IN YOUR WORDS</div>
+        <h2>Were you there?</h2>
+        <p>If you came to the Equipped Youth Conference, tell us in a line or two what stayed with you. With your permission, we'll share it here.</p>
+      </div>
+      <div class="quote-slots">
+        <div class="quote-slot"><span class="qm">“</span><p>Your line could be here.</p><small>A student, Takoradi</small></div>
+        <div class="quote-slot"><span class="qm">“</span><p>Yours too.</p><small>A speaker or teacher</small></div>
+      </div>
+      <button class="btn btn-gold" data-tab="contact" style="margin-top:2rem;">Send us a line</button>
+    </div>
+  </div>
+
+  <div class="section-pad bg-light" style="padding-top:3rem; padding-bottom:3rem;">
     <div class="wrap" style="text-align:center;">
-      <h3 style="color:var(--cream); margin-bottom:0.8rem;">Want to be part of this?</h3>
-      <p style="color:var(--purple-200); max-width:32rem; margin:0 auto 1.6rem;">Whether you lead a school, or want to speak or mentor — there's a place for you.</p>
+      <h3 style="margin-bottom:0.8rem;">Want to be part of this?</h3>
+      <p style="max-width:32rem; margin:0 auto 1.6rem;">Whether you lead a school, or want to speak, mentor or volunteer, there's a place for you.</p>
       <a class="btn btn-gold" data-tab="involved">Get involved</a>
     </div>
   </div>
@@ -403,12 +663,17 @@
 
 <!-- ================= ABOUT ================= -->
 <section class="panel" id="panel-about">
+  <div class="page-hero">
+    <div class="wrap">
+      <span class="tag-pill">ABOUT PURPLE TRIBE</span>
+      <h1>Raising people, not just <em>results</em>.</h1>
+      <p>Mission, vision and the values behind every conference, club and conversation.</p>
+    </div>
+  </div>
+  <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>Character</span><span>Excellence</span><span>Community</span><span>Faith</span><span>Purpose</span><span>Conviction</span><span>Integrity</span><span>Growth</span><span>Character</span><span>Excellence</span><span>Community</span><span>Faith</span><span>Purpose</span><span>Conviction</span><span>Integrity</span><span>Growth</span></div></div>
+
   <div class="section-pad bg-light">
     <div class="wrap">
-      <div class="section-head" style="margin:0 auto 3rem; text-align:center; max-width:38rem;">
-        <div class="eyebrow" style="text-align:center;">ABOUT PURPLE TRIBE</div>
-        <h2>Mission, vision & values.</h2>
-      </div>
 
       <div class="mv-block">
         <div class="eyebrow mv-label">OUR MISSION</div>
@@ -451,31 +716,39 @@
 
 <!-- ================= WHAT WE DO ================= -->
 <section class="panel" id="panel-what-we-do">
+  <div class="page-hero">
+    <div class="wrap">
+      <span class="tag-pill">WHAT WE DO</span>
+      <h1>A day that <em>starts</em> something.</h1>
+      <p>Everything begins with a conference. What follows is what makes it last.</p>
+    </div>
+  </div>
+  <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>Conferences</span><span>Clubs</span><span>Mentorship</span><span>Big talks</span><span>Real questions</span><span>Live acts</span><span>Community</span><span>Next steps</span><span>Conferences</span><span>Clubs</span><span>Mentorship</span><span>Big talks</span><span>Real questions</span><span>Live acts</span><span>Community</span><span>Next steps</span></div></div>
+
   <div class="section-pad bg-light">
     <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">WHAT WE DO</div>
-        <h2>A day that starts something.</h2>
-        <p>Everything begins with a conference. What follows is what makes it last.</p>
-      </div>
 
       <div class="feature-block">
         <div>
           <div class="eyebrow">01 · THE MAIN EVENT</div>
           <h3 style="margin-top:0.6rem;">Conferences</h3>
-          <p style="margin-top:0.8rem;">A full day in a school hall — speaker sessions, performances, honest discussion and mentorship, all built around one theme: taking life seriously. Not just studies, but character, purpose and faith. Students leave with something to think about, and a next step to take.</p>
+          <p style="margin-top:0.8rem;">A day of speaker sessions, live performances, trivia with rewards, a panel you can put questions to, and recorded messages from speakers who could not be there. All built around one theme: taking life seriously. Not just studies, but character, purpose and faith. Students leave with something to think about, and a next step to take.</p>
           <div class="feature-chips">
             <span class="chip">Speaker Sessions</span>
-            <span class="chip">Performances</span>
-            <span class="chip">Discussion</span>
+            <span class="chip">Live Performances</span>
+            <span class="chip">Trivia &amp; Rewards</span>
+            <span class="chip">Panel</span>
+            <span class="chip">Video Messages</span>
+            <span class="chip">Highlight Video</span>
             <span class="chip">Mentorship</span>
           </div>
         </div>
         <div class="feature-visual">
-          <div class="agenda-row"><div class="agenda-time">Morning</div><div class="agenda-title">Opening & keynote sessions</div></div>
-          <div class="agenda-row"><div class="agenda-time">Midday</div><div class="agenda-title">Performances & energy</div></div>
-          <div class="agenda-row"><div class="agenda-time">Afternoon</div><div class="agenda-title">Panel & open discussion</div></div>
-          <div class="agenda-row"><div class="agenda-time">Close</div><div class="agenda-title">Mentorship sign-ups</div></div>
+          <div class="agenda-row"><div class="agenda-time">Open</div><div class="agenda-title">Welcome, prayer & keynote sessions</div></div>
+          <div class="agenda-row"><div class="agenda-time">Play</div><div class="agenda-title">Live acts & trivia with rewards</div></div>
+          <div class="agenda-row"><div class="agenda-time">Talk</div><div class="agenda-title">Panel & open discussion</div></div>
+          <div class="agenda-row"><div class="agenda-time">Watch</div><div class="agenda-title">Messages from absent speakers & the highlight video</div></div>
+          <div class="agenda-row"><div class="agenda-time">Next</div><div class="agenda-title">Mentorship sign-ups</div></div>
         </div>
       </div>
 
@@ -483,7 +756,7 @@
         <div class="support-card">
           <div class="eyebrow" style="color:var(--purple-600);">02 · WHAT COMES NEXT</div>
           <h3>The Purple Tribe Club</h3>
-          <p>After the conference ends, the conversation doesn't have to. Where a school welcomes it, we help set up a student-led club — run by a student president, guided by a patron teacher, meeting every two weeks to keep working on the same things: study habits, character, purpose, and support.</p>
+          <p>After the conference ends, the conversation doesn't have to. Where a school welcomes it, we help set up a student-led club, run by a student president and guided by a patron teacher. It's a regular place to work on study habits, character, purpose and support together.</p>
         </div>
         <div class="support-card">
           <div class="eyebrow" style="color:var(--purple-600);">03 · THE LONG GAME</div>
@@ -491,6 +764,53 @@
           <p>Real relationships that outlast a single event. Students who want to go further are matched with mentors and stay connected through a WhatsApp community — through holidays, exams, and whatever comes after school.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="section-pad bg-dark pathway-sec" id="pathway">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">THE MENTORSHIP PATHWAY</div>
+        <h2>Your road from senior high to what comes next.</h2>
+        <p>Twelve milestones in four stages. Your mentor walks every one with you, and you leave each with something real in your hands. Start where you are.</p>
+      </div>
+
+      <div class="where">
+        <span class="where-label">Where are you now?</span>
+        <div class="chips">
+          <button class="w-chip" data-start="0">SHS 1 or 2</button>
+          <button class="w-chip" data-start="3">SHS 3</button>
+          <button class="w-chip" data-start="6">Just finished school</button>
+          <button class="w-chip" data-start="8">University or work</button>
+        </div>
+      </div>
+
+      <div class="trail-scroll" id="trailScroll">
+        <div class="trail" id="trail">
+          <svg id="trailSvg" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true"></svg>
+        </div>
+      </div>
+
+      <div class="stage-legend" id="stageLegend"></div>
+
+      <article class="step-card" id="stepCard" aria-live="polite">
+        <div class="step-left">
+          <span class="step-num" id="stepNum">1</span>
+          <span class="step-stage" id="stepStage">Discover</span>
+          <span class="step-count" id="stepCount">Step 1 of 12</span>
+        </div>
+        <div class="step-right">
+          <h3 id="stepTitle"></h3>
+          <p id="stepDo"></p>
+          <div class="away"><b>You walk away with</b><span id="stepAway"></span></div>
+          <div class="mentor-role"><b>Your mentor</b><span id="stepMentor"></span></div>
+          <div class="step-nav">
+            <button class="btn btn-outline" id="stepPrev">Previous</button>
+            <button class="btn btn-gold" id="stepNext">Next step</button>
+          </div>
+        </div>
+      </article>
+      <p class="path-end">At the end, the circle closes: today's mentees become tomorrow's mentors. Every pair sets its own pace, and nobody has to start at the beginning.</p>
     </div>
   </div>
 
@@ -505,13 +825,17 @@
 
 <!-- ================= EVENTS ================= -->
 <section class="panel" id="panel-events">
+  <div class="page-hero">
+    <div class="wrap">
+      <span class="tag-pill">EVENTS</span>
+      <h1>What's <em>coming up</em>.</h1>
+      <p>Where we list upcoming conferences and how to join them.</p>
+    </div>
+  </div>
+  <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>Upcoming</span><span>Conferences</span><span>Clubs</span><span>Meet-ups</span><span>Takoradi</span><span>And beyond</span><span>Upcoming</span><span>Conferences</span><span>Clubs</span><span>Meet-ups</span><span>Takoradi</span><span>And beyond</span></div></div>
+
   <div class="section-pad bg-light">
     <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">EVENTS</div>
-        <h2>What's coming up.</h2>
-        <p>Where we'll list upcoming conferences and how to register or attend.</p>
-      </div>
 
       <div class="empty-state">
         <div class="empty-icon">
@@ -521,19 +845,34 @@
         <p>We're putting our events calendar together. Check back later, or get involved now so we can reach you directly when the next one is confirmed.</p>
         <button class="btn btn-gold" data-tab="involved" style="margin-top:1.4rem;">Get involved</button>
       </div>
+
+      <div class="lookback">
+        <div class="eyebrow">LOOKING BACK</div>
+        <h3>Equipped Youth Conference</h3>
+        <p>November 2025 · Akroma Plaza, Takoradi · 110+ young people, including students from Ahantaman Girls SHS and Fijai SHS. A day of talks, discussion and mentorship, and the start of everything here.</p>
+        <div class="polaroids small">
+          <figure class="polaroid p1"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-1a4 4 0 00-4-4H7a4 4 0 00-4 4v1M10 11a4 4 0 100-8 4 4 0 000 8zM21 20v-1a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><figcaption>The room</figcaption></figure>
+          <figure class="polaroid p2"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v4M8 22h8"/></svg></div><figcaption>On stage</figcaption></figure>
+          <figure class="polaroid p3"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg></div><figcaption>The moment</figcaption></figure>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ================= GET INVOLVED ================= -->
 <section class="panel" id="panel-involved">
+  <div class="page-hero">
+    <div class="wrap">
+      <span class="tag-pill">GET INVOLVED</span>
+      <h1>Two ways <em>in</em>.</h1>
+      <p>Lead a school or give your time. There is a place for you.</p>
+    </div>
+  </div>
+  <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>Volunteer</span><span>Speak</span><span>Mentor</span><span>Start a club</span><span>Open your school</span><span>Join the tribe</span><span>Volunteer</span><span>Speak</span><span>Mentor</span><span>Start a club</span><span>Open your school</span><span>Join the tribe</span></div></div>
+
   <div class="section-pad bg-light">
     <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">GET INVOLVED</div>
-        <h2>Two ways in.</h2>
-        <p>Whether you lead a school or want to give your time — there's a place for you.</p>
-      </div>
 
       <div class="involve-grid">
         <div class="path-list">
@@ -569,7 +908,7 @@
           <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;">
 
           <button type="submit" class="btn btn-gold form-submit" id="submitBtn">Send it in</button>
-          <div class="form-note">We reply within a few days. No spam — ever.</div>
+          <div class="form-note">We reply within a few days. No spam, ever. See our <a data-tab="privacy">Privacy Policy</a>.</div>
           <div class="form-success" id="formSuccess">Thank you — your message is in. Someone from the Purple Tribe team will reach out soon.</div>
           <div class="form-error" id="formError">Something went wrong sending that. Please email info.purpletribe@gmail.com instead.</div>
         </form>
@@ -580,13 +919,17 @@
 
 <!-- ================= TEAM (real members) ================= -->
 <section class="panel" id="panel-team">
+  <div class="page-hero">
+    <div class="wrap">
+      <span class="tag-pill">THE TEAM</span>
+      <h1>The people <em>behind it</em>.</h1>
+      <p>A volunteer team of working professionals, committed to building the next generation.</p>
+    </div>
+  </div>
+  <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>Project lead</span><span>Programmes</span><span>Logistics</span><span>Media</span><span>Clubs</span><span>Mentorship</span><span>Project lead</span><span>Programmes</span><span>Logistics</span><span>Media</span><span>Clubs</span><span>Mentorship</span></div></div>
+
   <div class="section-pad bg-light">
     <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">THE TEAM</div>
-        <h2>Who's behind it.</h2>
-        <p>A volunteer team of working professionals, committed to building the next generation.</p>
-      </div>
       <div class="team-grid">
         <div class="team-card"><div class="team-avatar">CW</div><h4>Collins Wilson</h4><span class="team-role">Project Lead</span><p>School relations, partnerships, accountability.</p><p class="team-aff">Quality Coordinator, Noguchi Memorial Institute for Medical Research (NMIMR), Dept. of Immunology</p></div>
         <div class="team-card"><div class="team-avatar">CA</div><h4>Charles Abotsi</h4><span class="team-role">Programmes &amp; Logistics Lead</span><p>Event planning, speakers, venue, logistics.</p><p class="team-aff">Product Manager, Hubtel Ltd.</p></div>
@@ -599,13 +942,17 @@
 
 <!-- ================= CONTACT ================= -->
 <section class="panel" id="panel-contact">
+  <div class="page-hero">
+    <div class="wrap">
+      <span class="tag-pill">CONTACT</span>
+      <h1>Let's <em>talk</em>.</h1>
+      <p>Questions? We don't bite. Reach us directly, or use the form on the Get Involved tab.</p>
+    </div>
+  </div>
+  <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>Say hello</span><span>Email us</span><span>Call us</span><span>Takoradi, Ghana</span><span>Ask anything</span><span>We reply</span><span>Say hello</span><span>Email us</span><span>Call us</span><span>Takoradi, Ghana</span><span>Ask anything</span><span>We reply</span></div></div>
+
   <div class="section-pad bg-light">
     <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">CONTACT</div>
-        <h2>Let's talk.</h2>
-        <p>Have a question, or want to reach us directly rather than filling out a form? Here's how.</p>
-      </div>
 
       <div class="contact-grid">
         <div>
@@ -633,6 +980,132 @@
   </div>
 </section>
 
+
+<!-- ================= PRIVACY ================= -->
+<section class="panel" id="panel-privacy">
+  <div class="page-hero">
+    <div class="wrap">
+      <span class="tag-pill">PRIVACY POLICY</span>
+      <h1>Your details, <em>handled with care</em>.</h1>
+      <p>What we collect, why we collect it, and what you can ask us to do with it.</p>
+    </div>
+  </div>
+  <div class="section-pad bg-light">
+    <div class="wrap">
+      <div class="doc">
+        <div class="updated">Last updated: October 2026</div>
+        <p>Purple Tribe is a youth development initiative based in Takoradi, Ghana. This page explains how we handle personal information on this website and in our programmes. We try to follow the principles of Ghana's Data Protection Act, 2012 (Act 843): collect only what we need, use it for the reason we gave, keep it safe, and let you see it or remove it.</p>
+
+        <h3>What we collect</h3>
+        <ul>
+          <li><b>Through the Get Involved form:</b> your name, email or phone number, whether you are interested in bringing Purple Tribe to a school or in volunteering, your school or organisation (optional), and your message.</li>
+          <li><b>Through our volunteer and interest forms:</b> the answers you give, which may include your school, level and availability. If you are under 18 we also ask for a parent or guardian's name and phone number.</li>
+          <li><b>At conferences and clubs:</b> names and contact details for mentorship sign-ups, and feedback you choose to give. We may take photos and video (see below).</li>
+        </ul>
+        <p>This website does not use advertising trackers, and we do not set our own cookies.</p>
+
+        <h3>Why we use it</h3>
+        <ul>
+          <li>To reply to you and arrange conversations with schools, volunteers, speakers and mentors.</li>
+          <li>To organise conferences, clubs and mentorship, and to match students with mentors.</li>
+          <li>To let a parent or guardian know about a young person's involvement, where that applies.</li>
+          <li>To understand how our programmes are going, using feedback in summary form.</li>
+        </ul>
+
+        <h3>Where it is kept and who sees it</h3>
+        <p>Form responses are saved in a Google Sheet and sent to our team inbox. Only the Purple Tribe team members who need them can open them. We do not sell your information and we do not share it for advertising. We share it only with people who need it to run the programme, such as a school liaison teacher or the mentor matched with you, or when the law requires it.</p>
+        <p>This site is hosted on GitHub Pages and uses Google Fonts, so those services may see your IP address when the page loads. Our forms run on Google services. Their own privacy policies apply to what they collect.</p>
+
+        <h3>Photos and video</h3>
+        <p>We take photos and video at events to share what Purple Tribe does. For anyone under 18, we use identifiable images only with the consent of a parent, guardian or the school. If you or your child appears in an image you would like removed, tell us and we will take it down.</p>
+
+        <h3>Young people</h3>
+        <p>Purple Tribe works with senior high school students. We ask for a parent or guardian's details when a person under 18 volunteers, and we do not use young people's personal details for marketing. Mentors and volunteers follow our <a data-tab="conduct" class="link">Code of Conduct</a>, which sets out how they may contact students.</p>
+
+        <h3>How long we keep it</h3>
+        <p>We keep personal information only as long as we need it for the reason it was collected, for example while you are active as a volunteer, mentor or club member. When it is no longer needed, we delete it.</p>
+
+        <h3>Your choices</h3>
+        <p>You can ask us to:</p>
+        <ul>
+          <li>tell you what personal information we hold about you,</li>
+          <li>correct it if it is wrong,</li>
+          <li>delete it or stop using it.</li>
+        </ul>
+        <p>If you are under 18, a parent or guardian can make these requests for you. To do any of this, email <a href="mailto:info.purpletribe@gmail.com">info.purpletribe@gmail.com</a> or call +233 24 063 5675. We will reply as soon as we can. You may also contact Ghana's Data Protection Commission if you are unhappy with how your information has been handled.</p>
+
+        <h3>Changes</h3>
+        <p>If we change this policy, we will update the date at the top of this page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CODE OF CONDUCT ================= -->
+<section class="panel" id="panel-conduct">
+  <div class="page-hero">
+    <div class="wrap">
+      <span class="tag-pill">CODE OF CONDUCT</span>
+      <h1>A safe place <em>to grow</em>.</h1>
+      <p>How everyone at a Purple Tribe conference, club or mentorship relationship is expected to behave.</p>
+    </div>
+  </div>
+  <div class="section-pad bg-light">
+    <div class="wrap">
+      <div class="doc">
+        <div class="updated">Last updated: October 2026</div>
+        <p>Purple Tribe exists to help young people grow in character, purpose and conviction. That only works where they are safe, respected and taken seriously. This code applies to everyone involved: students, mentors, speakers, volunteers, patrons, team members and guests, at events, in clubs, and in any online group or message thread connected to Purple Tribe.</p>
+
+        <div class="callout"><p><b>In an emergency</b>, call 112 (or 191 for the police) first, then tell us.</p></div>
+
+        <h3>For everyone</h3>
+        <ul>
+          <li>Treat every person with respect, whatever their school, background, gender, ability, tribe or opinions.</li>
+          <li>No bullying, harassment, humiliation, threats, or discriminatory jokes or language, in person or online.</li>
+          <li>Our programmes are rooted in Christian values. Everyone is welcome, and nobody is pressured, shamed or made to feel less for what they believe.</li>
+          <li>No alcohol, drugs or weapons at our events.</li>
+          <li>Listen when others speak, follow the programme and respect the school's rules and property.</li>
+          <li>Respect privacy. Do not share another person's details, photos or story without their permission.</li>
+        </ul>
+
+        <h3>For mentors, speakers and volunteers</h3>
+        <p>You are trusted with young people, and that trust is the whole point. We ask you to:</p>
+        <ul>
+          <li>Keep mentoring conversations open and visible: in a group, in a public place, or in a channel that the school, a guardian or the team can see. Do not meet a student alone and out of sight.</li>
+          <li>Use only the communication channels agreed with the team, such as our official WhatsApp groups. Do not start private conversations, late-night messaging or secret communication with a student.</li>
+          <li>Never have a romantic or sexual relationship with a student, or say or do anything of a sexual nature towards one. This includes after a mentoring relationship ends, for as long as the person is under 18.</li>
+          <li>Do not give students money, gifts or favours that could create pressure, and do not ask them for any.</li>
+          <li>Do not take or share photos or video of a student without the consent described in our <a data-tab="privacy" class="link">Privacy Policy</a>.</li>
+          <li>Be a good example in language, conduct and how you treat others.</li>
+          <li>Keep what students tell you private, with one exception: if someone may be at risk of harm, you must pass it on (see "Raising a concern").</li>
+        </ul>
+
+        <h3>For students</h3>
+        <ul>
+          <li>Come ready to learn, ask questions and encourage each other.</li>
+          <li>Tell a team member or your school liaison teacher if something makes you uncomfortable. It is never your fault.</li>
+          <li>Do not share anyone's private messages or photos.</li>
+          <li>Never meet up with an adult from Purple Tribe privately. If someone asks you to, tell your teacher, parent or guardian, or the team.</li>
+        </ul>
+
+        <h3>Online spaces</h3>
+        <p>Our WhatsApp groups and other online spaces follow the same rules. Keep messages relevant and kind. Admins may remove messages or members that break this code.</p>
+
+        <h3>Raising a concern</h3>
+        <p>If you see or experience behaviour that breaks this code, or you are worried about a young person's safety, tell us as soon as you can:</p>
+        <ul>
+          <li>Email <a href="mailto:info.purpletribe@gmail.com">info.purpletribe@gmail.com</a> or call +233 24 063 5675.</li>
+          <li>At an event, speak to any team member or the school liaison teacher.</li>
+        </ul>
+        <p>We take every report seriously and keep it as private as we can. If a concern involves a member of the leadership team, tell another team member and it will be handled by someone else. Nobody will be treated badly for raising a concern in good faith.</p>
+
+        <h3>What happens if the code is broken</h3>
+        <p>Depending on how serious it is, we may give a reminder or a warning, remove a person from an event, group or role, tell the school or a parent or guardian, and where the law requires or a person may be at risk, report it to the relevant authorities.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer>
@@ -640,7 +1113,7 @@
     <div class="footer-grid">
       <div>
         <div class="footer-logo">Purple<span>Tribe</span></div>
-        <p class="footer-tag">A youth development initiative running conferences, clubs and mentorship — starting in Takoradi, Ghana.</p>
+        <p class="footer-tag">A youth development initiative running conferences, clubs and mentorship.</p>
       </div>
       <div class="footer-col">
         <h5>Site</h5>
@@ -659,6 +1132,7 @@
     </div>
     <div class="footer-bottom">
       <span>© 2026 Purple Tribe.</span>
+      <div class="footer-links"><a data-tab="privacy">Privacy Policy</a><a data-tab="conduct">Code of Conduct</a></div>
       <div class="social-row">
         <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></a>
         <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
@@ -669,7 +1143,7 @@
 </footer>
 
 <script>
-  const VALID_TABS = ['home','about','what-we-do','events','involved','team','contact'];
+  const VALID_TABS = ['home','about','what-we-do','events','involved','team','contact','privacy','conduct'];
 
   function switchTab(name, opts = {}) {
     if (!VALID_TABS.includes(name)) name = 'home';
@@ -730,6 +1204,142 @@
       submitBtn.disabled = false; submitBtn.textContent = label;
     }
   });
+
+  // ---- rotating headline word ----
+  (function(){
+    const el = document.getElementById('rotor');
+    const words = ['future','purpose','studies','character','faith','friendships'];
+    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let i = 0;
+    setInterval(() => {
+      i = (i + 1) % words.length;
+      el.classList.remove('swap'); void el.offsetWidth;
+      el.textContent = words[i]; el.classList.add('swap');
+    }, 2400);
+  })();
+
+  // ---- "Where would you fit in?" ----
+  (function(){
+    const answers = {};
+    const steps = [...document.querySelectorAll('.quiz-step')];
+    const result = document.getElementById('quizResult');
+    const rt = document.getElementById('resultTitle'), rb = document.getElementById('resultBody');
+    const cta = document.getElementById('resultCta');
+    let target = 'volunteer';
+
+    function outcome(a){
+      if (a.role === 'school') return ['Bring a conference to your school','We run a full-day conference in your school hall, then help set up a student-led club if you want one. Tell us about your school and we will arrange a conversation.','register'];
+      if (a.role === 'student') {
+        if (a.time === 'regular') return ['Start or join a Purple Tribe Club','Clubs are run by students, with a teacher as patron, to keep the conversation going in school. You could be the one who starts it.','volunteer'];
+        if (a.like === 'create') return ['Join the media team','Photos, video and posts that show what Purple Tribe is really like. Every conference needs people who can catch the moment.','volunteer'];
+        return ['Volunteer at the next conference','Help with registration, ushering or the stage on the day. You get a front-row seat and a hand in making it happen.','volunteer'];
+      }
+      if (a.like === 'talk') return ['Speak at a conference','Share what you wish you had known at their age. A short, honest talk is what students remember.','volunteer'];
+      if (a.like === 'listen' || a.time === 'regular') return ['Become a mentor','Be the person a student can message after the conference ends. We match you and keep the structure light.','volunteer'];
+      if (a.like === 'create') return ['Join the media team','Photos, video and posts that show what Purple Tribe is really like.','volunteer'];
+      return ['Help plan the next conference','Venues, schedules, speakers, snacks. Planning is where the day gets made, and we need more hands.','volunteer'];
+    }
+
+    document.querySelectorAll('.q-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        answers[btn.dataset.q] = btn.dataset.v;
+        const cur = steps.findIndex(st => !st.hidden);
+        steps[cur].hidden = true;
+        if (cur + 1 < steps.length) { steps[cur + 1].hidden = false; return; }
+        const [t, b, tgt] = outcome(answers);
+        rt.textContent = t; rb.textContent = b; target = tgt;
+        result.hidden = false;
+      });
+    });
+    cta.addEventListener('click', () => switchTab('involved', { preselect: target }));
+    document.getElementById('quizReset').addEventListener('click', () => {
+      for (const k in answers) delete answers[k];
+      result.hidden = true; steps.forEach((st, i) => st.hidden = i !== 0);
+    });
+  })();
+
+  // ---- mentorship pathway ----
+  (function(){
+    const STAGES = [
+      {name:'Discover', color:'var(--gold)'},
+      {name:'Plan', color:'var(--purple-500)'},
+      {name:'Prepare', color:'var(--purple-800)'},
+      {name:'Launch', color:'var(--purple-200)'}
+    ];
+    const STEPS = [
+      {s:0, t:'Introduction', short:'Introduction', d:'You meet your mentor, talk about who you are and agree how you will work together: how often you will talk, and what you each expect.', a:'A simple mentoring agreement you both sign.', m:'Listens first, shares their own story, and sets the tone.'},
+      {s:0, t:'Know yourself', short:'Know yourself', d:'Strengths, values, faith, interests and the things that make you lose track of time. You cannot plan a future you have not looked at.', a:'A one-page profile of who you are today.', m:'Asks good questions and helps you see strengths you overlook.'},
+      {s:0, t:'Goal setting', short:'Set goals', d:'You turn vague hopes into clear SMART goals for your studies, your character and your life, each with a date.', a:'Three written goals with dates and first steps.', m:'Challenges unrealistic goals and cheers real progress.'},
+      {s:1, t:'Plan your path', short:'Roadmap', d:'You draw a roadmap from where you are now to where you want to be in five years, with clear stops along the way.', a:'A visual roadmap you can stick on your wall.', m:'Helps you spot the steps, and the obstacles, you have not seen.'},
+      {s:1, t:'Explore your options', short:'Options', d:'University, technical school, vocational training, entrepreneurship, scholarships and national service. You learn what each path asks of you and what it opens up.', a:'A shortlist of three options, with entry requirements.', m:'Shares real experience of paths they or people they know have taken.'},
+      {s:1, t:'Study strategy', short:'Study plan', d:'Study habits, time management and exam preparation that fit your life, right up to WASSCE.', a:'A weekly study timetable that works for you.', m:'Keeps you accountable, week by week.'},
+      {s:2, t:'Create your CV', short:'Your CV', d:'You write a clear one-page CV that shows your education, achievements, leadership and skills, even if you have never had a job.', a:'A polished CV, ready to send.', m:'Reviews your draft and tells you honestly what works.'},
+      {s:2, t:'Applications & personal statement', short:'Applications', d:'Application forms, personal statements, and how to ask a teacher or leader for a reference letter.', a:'A first draft of your personal statement.', m:'Gives feedback on your writing and keeps you on deadline.'},
+      {s:2, t:'Skills & network', short:'Network', d:'Communication, teamwork, and how to build a professional network and reach out to people you admire. You set up a LinkedIn profile too.', a:'A LinkedIn profile and three people you will contact.', m:'Introduces you to people in their own network.'},
+      {s:3, t:'Interview ready', short:'Interviews', d:'You practise real interview questions, learn how to dress, speak and follow up, and get honest feedback.', a:'Practised answers and a mock interview behind you.', m:'Plays the interviewer, then tells you what stood out.'},
+      {s:3, t:'Stand out at work', short:'At work', d:'Punctuality, teamwork, integrity and learning fast. The habits that make people trust you in a first job, internship or national service.', a:'A personal checklist for your first 90 days.', m:'Prepares you for the unwritten rules of the workplace.'},
+      {s:3, t:'Give back', short:'Give back', d:'You prepare to mentor a younger student, passing on what was passed on to you.', a:'A younger student to walk with.', m:'Steps back and cheers you on as the mentor.'}
+    ];
+    const trail = document.getElementById('trail'), svg = document.getElementById('trailSvg');
+    const W=1200, H=300, N=STEPS.length;
+    const yAt = x => 150 + 80*Math.sin((x-60)/1080*Math.PI*3);
+    const pts = []; for (let x=40; x<=1160; x+=6) pts.push([x,yAt(x)]);
+    const cum=[0]; for (let i=1;i<pts.length;i++) cum.push(cum[i-1]+Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]));
+    const total = cum[cum.length-1];
+    const d = 'M'+pts.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' L');
+    svg.innerHTML = '<path d="'+d+'" fill="none" stroke="rgba(251,227,163,0.35)" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>' +
+                    '<path id="prog" d="'+d+'" fill="none" stroke="#F2B705" stroke-width="5" stroke-linecap="round" stroke-dasharray="0 '+total+'"/>';
+    const prog = document.getElementById('prog');
+    const nodes = STEPS.map((st,i) => {
+      const x = 80 + i*(1040/(N-1)), y = yAt(x);
+      const b = document.createElement('button');
+      b.className = 'node st'+st.s + (Math.sin((x-60)/1080*Math.PI*3) > 0 ? ' up' : '');
+      b.style.left = (x/W*100)+'%'; b.style.top = (y/H*100)+'%';
+      b.setAttribute('aria-label','Step '+(i+1)+': '+st.t);
+      b.innerHTML = (i+1)+'<span class="label">'+st.short+'</span>';
+      b.addEventListener('click', () => select(i, true));
+      trail.appendChild(b);
+      // distance along the path at this node
+      let k=0; while (k<pts.length-1 && pts[k][0] < x) k++;
+      b._len = cum[k];
+      return b;
+    });
+    const card = document.getElementById('stepCard');
+    const el = id => document.getElementById(id);
+    const legend = el('stageLegend');
+    STAGES.forEach((g,gi) => {
+      const first = STEPS.findIndex(s=>s.s===gi), last = STEPS.map(s=>s.s).lastIndexOf(gi);
+      const b = document.createElement('button'); b.className='lg'; b.dataset.stage=gi;
+      b.innerHTML = '<i style="background:'+g.color+'"></i>'+g.name+' ('+(first+1)+(last>first?'–'+(last+1):'')+')';
+      b.addEventListener('click', () => select(first, true));
+      legend.appendChild(b);
+    });
+    let cur = 0, here = -1; const hereEl = document.createElement('span'); hereEl.className='here'; hereEl.textContent='You are here';
+    function select(i, scroll){
+      cur = i; const st = STEPS[i];
+      nodes.forEach((n,k) => { n.classList.toggle('active', k===i); n.classList.toggle('done', k<i); });
+      prog.setAttribute('stroke-dasharray', nodes[i]._len+' '+total);
+      card.dataset.stage = st.s;
+      el('stepNum').textContent = i+1; el('stepStage').textContent = STAGES[st.s].name; el('stepCount').textContent = 'Step '+(i+1)+' of '+N;
+      el('stepTitle').textContent = st.t; el('stepDo').textContent = st.d; el('stepAway').textContent = st.a; el('stepMentor').textContent = st.m;
+      el('stepPrev').disabled = i===0; el('stepNext').disabled = i===N-1;
+      el('stepNext').textContent = i===N-1 ? 'You made it' : 'Next step';
+      legend.querySelectorAll('.lg').forEach(b => b.classList.toggle('on', +b.dataset.stage===st.s));
+      if (scroll) {
+        const sc = el('trailScroll');
+        if (sc.scrollWidth > sc.clientWidth) { const x = nodes[i].offsetLeft - sc.clientWidth/2; sc.scrollTo({left:x, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto':'smooth'}); }
+      }
+    }
+    function setHere(i){
+      here = i; hereEl.remove(); nodes[i].appendChild(hereEl);
+      document.querySelectorAll('.w-chip').forEach(c => c.classList.toggle('on', +c.dataset.start===i));
+      select(i, true);
+    }
+    document.querySelectorAll('.w-chip').forEach(c => c.addEventListener('click', () => setHere(+c.dataset.start)));
+    el('stepPrev').addEventListener('click', () => select(Math.max(0,cur-1), true));
+    el('stepNext').addEventListener('click', () => select(Math.min(N-1,cur+1), true));
+    select(0, false);
+  })();
 
   // initial tab from hash, default home
   const initial = (location.hash || '').replace('#', '');
