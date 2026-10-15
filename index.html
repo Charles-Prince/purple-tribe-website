@@ -322,13 +322,31 @@
   @keyframes tick{to{transform:translateX(-50%);}}
 
   .polaroids{display:flex; gap:1.6rem; justify-content:center; flex-wrap:wrap; margin-top:2.6rem;}
-  .polaroid{background:#fff; padding:0.7rem 0.7rem 0.4rem; border-radius:6px; box-shadow:0 12px 26px rgba(0,0,0,0.35); width:min(220px, 100%); transition:transform .25s ease;}
+  .polaroid{background:#fff; padding:0.7rem; border-radius:6px; box-shadow:0 12px 26px rgba(0,0,0,0.35); width:min(220px, 100%); transition:transform .25s ease;}
   .polaroid .ph{aspect-ratio:1/1; background:radial-gradient(circle at 30% 25%, var(--purple-500), var(--purple-800) 70%); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;}
   .polaroid:nth-child(2) .ph{background:radial-gradient(circle at 70% 25%, var(--gold), #C58F00 75%);}
   .polaroid:nth-child(3) .ph{background:radial-gradient(circle at 30% 70%, var(--purple-600), var(--purple-950) 75%);}
   .polaroid .ph svg{width:46%; height:46%; stroke:#fff; opacity:0.92;}
   .polaroid:nth-child(2) .ph svg{stroke:var(--purple-950);}
   .polaroid .ph::after{content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,rgba(255,255,255,0.06) 0 2px,transparent 2px 14px);}
+
+  .polaroid .ph img{width:100%; height:100%; object-fit:cover; display:block;}
+  .polaroid .ph.has-img::after{display:none;}
+
+
+  .gallery{columns:3; column-gap:1rem; margin-top:2rem;}
+  .g-item{display:block; width:100%; margin:0 0 1rem; padding:0; border:0; background:var(--purple-100); border-radius:14px; overflow:hidden; cursor:zoom-in; break-inside:avoid; position:relative; transition:transform .25s ease, box-shadow .25s ease;}
+  .g-item img{display:block; width:100%; height:auto;}
+  .g-item:hover{transform:translateY(-4px) rotate(-0.4deg); box-shadow:0 16px 30px rgba(59,16,83,0.2);}
+  .g-item:focus-visible{outline:3px solid var(--gold); outline-offset:3px;}
+  @media (max-width:820px){ .gallery{columns:2;} }
+  @media (max-width:480px){ .gallery{columns:1;} }
+  .lightbox{position:fixed; inset:0; background:rgba(27,10,46,0.94); display:none; align-items:center; justify-content:center; z-index:1000; padding:1.5rem;}
+  .lightbox.open{display:flex;}
+  .lightbox img{max-width:100%; max-height:88vh; border-radius:10px; box-shadow:0 20px 60px rgba(0,0,0,0.5);}
+  .lightbox figure{margin:0; text-align:center; color:#fff;}
+  .lightbox figcaption{margin-top:0.8rem; font-size:0.95rem; color:var(--purple-200);}
+  .lightbox .lb-close{position:absolute; top:1rem; right:1rem; background:var(--gold); color:var(--purple-950); border:0; width:44px; height:44px; border-radius:50%; font-size:1.4rem; cursor:pointer; font-weight:700;}
   .polaroid figcaption{font-family:var(--font-display); font-style:italic; text-align:center; color:var(--purple-800); padding:0.6rem 0 0.3rem; font-size:0.95rem;}
   .p1{transform:rotate(-4deg);} .p2{transform:rotate(2deg) translateY(10px);} .p3{transform:rotate(-2deg);}
   .polaroid:hover{transform:rotate(0) scale(1.04);}
@@ -553,9 +571,10 @@
         </div>
       </div>
       <div class="polaroids" aria-label="Moments from the Equipped Youth Conference">
-        <figure class="polaroid p1"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-1a4 4 0 00-4-4H7a4 4 0 00-4 4v1M10 11a4 4 0 100-8 4 4 0 000 8zM21 20v-1a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><figcaption>The room</figcaption></figure>
-        <figure class="polaroid p2"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v4M8 22h8"/></svg></div><figcaption>On stage</figcaption></figure>
-        <figure class="polaroid p3"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg></div><figcaption>The moment</figcaption></figure>
+        <figure class="polaroid p1"><div class="ph has-img"><img src="images/room.jpg" alt="Students seated in the hall at the Equipped Youth Conference" loading="lazy" style="object-position:50% 55%"></div></figure>
+        <figure class="polaroid p2"><div class="ph has-img"><img src="images/host.jpg" alt="A host speaking to students at the conference" loading="lazy" style="object-position:55% 40%"></div></figure>
+        <figure class="polaroid p3"><div class="ph has-img"><img src="images/podium.jpg" alt="A speaker smiling and giving a peace sign from the podium" loading="lazy" style="object-position:50% 30%"></div></figure>
+      
       </div>
     </div>
   </div>
@@ -850,10 +869,16 @@
         <div class="eyebrow">LOOKING BACK</div>
         <h3>Equipped Youth Conference</h3>
         <p>November 2025 · Akroma Plaza, Takoradi · 110+ young people, including students from Ahantaman Girls SHS and Fijai SHS. A day of talks, discussion and mentorship, and the start of everything here.</p>
-        <div class="polaroids small">
-          <figure class="polaroid p1"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-1a4 4 0 00-4-4H7a4 4 0 00-4 4v1M10 11a4 4 0 100-8 4 4 0 000 8zM21 20v-1a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><figcaption>The room</figcaption></figure>
-          <figure class="polaroid p2"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v4M8 22h8"/></svg></div><figcaption>On stage</figcaption></figure>
-          <figure class="polaroid p3"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg></div><figcaption>The moment</figcaption></figure>
+        <div class="gallery" aria-label="Photos from the Equipped Youth Conference">
+          <button class="g-item" type="button" data-src="images/room.jpg" data-cap="The room"><img src="images/room.jpg" alt="Students seated in the hall facing the stage" loading="lazy"></button>
+          <button class="g-item" type="button" data-src="images/podium.jpg" data-cap="The moment"><img src="images/podium.jpg" alt="A speaker giving a peace sign at the podium" loading="lazy"></button>
+          <button class="g-item" type="button" data-src="images/panel.jpg" data-cap="Panel session"><img src="images/panel.jpg" alt="A panel of speakers talking with students watching" loading="lazy"></button>
+          <button class="g-item" type="button" data-src="images/host.jpg" data-cap="Hosting"><img src="images/host.jpg" alt="A host speaking to students in the hall" loading="lazy"></button>
+          <button class="g-item" type="button" data-src="images/wall.jpg" data-cap="Who do you want to be?"><img src="images/wall.jpg" alt="The autograph wall where students wrote who they want to be" loading="lazy"></button>
+          <button class="g-item" type="button" data-src="images/speaker-denim.jpg" data-cap="On stage"><img src="images/speaker-denim.jpg" alt="A speaker in a denim jacket smiling with a microphone" loading="lazy"></button>
+          <button class="g-item" type="button" data-src="images/panelist.jpg" data-cap="Panelist"><img src="images/panelist.jpg" alt="A panelist smiling in a blue armchair" loading="lazy"></button>
+          <button class="g-item" type="button" data-src="images/speaker-close.jpg" data-cap="Speaking to the room"><img src="images/speaker-close.jpg" alt="A speaker talking to students" loading="lazy"></button>
+          <button class="g-item" type="button" data-src="images/panelist-speaking.jpg" data-cap="Answering questions"><img src="images/panelist-speaking.jpg" alt="A panelist speaking into a microphone" loading="lazy"></button>
         </div>
       </div>
     </div>
@@ -1142,6 +1167,7 @@
   </div>
 </footer>
 
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer"><button class="lb-close" type="button" aria-label="Close photo">&times;</button><figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure></div>
 <script>
   const VALID_TABS = ['home','about','what-we-do','events','involved','team','contact','privacy','conduct'];
 
@@ -1339,6 +1365,20 @@
     el('stepPrev').addEventListener('click', () => select(Math.max(0,cur-1), true));
     el('stepNext').addEventListener('click', () => select(Math.min(N-1,cur+1), true));
     select(0, false);
+  })();
+
+
+  // ---- photo lightbox ----
+  (function(){
+    const lb=document.getElementById('lightbox'); if(!lb) return;
+    const img=document.getElementById('lbImg'), cap=document.getElementById('lbCap');
+    function close(){ lb.classList.remove("open"); img.removeAttribute("src"); }
+    document.addEventListener('click',e=>{
+      const b=e.target.closest('.g-item');
+      if(b){ img.src=b.dataset.src; img.alt=b.querySelector('img').alt; cap.textContent=b.dataset.cap||''; lb.classList.add('open'); return; }
+      if(e.target===lb || e.target.closest('.lb-close')) close();
+    });
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
   })();
 
   // initial tab from hash, default home
